@@ -2,24 +2,12 @@
 #ifndef SIMPLE_GAME_H
 #define SIMPLE_GAME_H
 
-class GLFWwindow;
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 class SimpleGame
 {
 public:
-	struct vertex 
-	{
-		float x;
-		float y;
-		float z;
-
-		vertex(float in_x, float in_y, float in_z)
-		{
-			x = in_x;
-			y = in_y;
-			z = in_z;
-		};
-	};
 
 
 public:
@@ -36,11 +24,37 @@ public:
 	void TerminateOpenGL();
 	void run();
 
-	void resizeBufferCallback(GLFWwindow* window, int width, int height);
 
-	std::vector<vertex> allVertex;
+	static void glfw_onResize(GLFWwindow* window, int width, int height);
+	static void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static void glfw_onMouseButton(GLFWwindow* window, int button, int action, int mods);
+	static void glfw_onMouseMove(GLFWwindow* window, double x, double y);
+	static void glfw_onMouseWheel(GLFWwindow* window, double xoffset, double yoffset);
+
+	void setVSYNC(bool enable);
+	void clearBuffer();
+
+	void onDebugMessage(GLenum source,
+		GLenum type,
+		GLuint id,
+		GLenum severity,
+		GLsizei length,
+		const GLchar* message);
+
 
 private:
+	GLFWwindow* window;
+	unsigned int _vsync;
+	int windowWidth;
+	int windowHeight;
+
+	static void APIENTRY debug_callback(GLenum source,
+		GLenum type,
+		GLuint id,
+		GLenum severity,
+		GLsizei length,
+		const GLchar* message,
+		GLvoid* userParam);
 
 };
 
