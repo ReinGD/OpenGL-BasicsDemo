@@ -7,7 +7,9 @@ public:
 	ShaderObject(const char* vertexShader, const char* fragmentShader);
 	~ShaderObject();
 
-	unsigned int getProgram();
+	unsigned int getProgram() const;
+	void SetActive() const;
+
 private:
 	unsigned int _vertexShader;
 	unsigned int _fragmentShader;

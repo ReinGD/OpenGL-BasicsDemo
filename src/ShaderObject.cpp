@@ -61,7 +61,12 @@ ShaderObject::~ShaderObject()
 
 }
 
-unsigned int ShaderObject::getProgram()
+unsigned int ShaderObject::getProgram() const
 {
 	return shaderProgram;
+}
+
+void ShaderObject::SetActive() const
+{
+	glUseProgram(this->getProgram());
 }

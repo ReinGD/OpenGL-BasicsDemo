@@ -78,7 +78,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SOLUTION_DIR=R"($(SolutionDir))";WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SOLUTION_DIR=R"($(SolutionDir))";WIN32;_DEBUG;_GLFW_WIN32;_GLFW_USE_CONFIG_H;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\File\include;$(SolutionDir)Libraries\GDUtils\include;$(SolutionDir)Libraries\glad\src;$(SolutionDIr)Libraries\glad\include;$(SolutionDir)Libraries\glm-master\glm;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>Framework.h</ForcedIncludeFiles>
@@ -144,16 +144,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Libraries\glad\src\glad.c" />
+    <ClCompile Include="GraphicsObject.cpp" />
+    <ClCompile Include="GraphicsObject_Simple.cpp" />
     <ClCompile Include="HexagonPlane.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ShaderObject.cpp" />
     <ClCompile Include="SimpleGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsObject.h" />
     <ClInclude Include="GraphicsObject_Simple.h" />
     <ClInclude Include="HexagonPlane.h" />
-    <ClInclude Include="ModelProperties.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshProperties.h" />
     <ClInclude Include="OpenGL_Helper.h" />
     <ClInclude Include="RenderMaterial.h" />
     <ClInclude Include="ShaderObject.h" />

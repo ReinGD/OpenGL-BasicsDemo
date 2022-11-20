@@ -1,16 +1,15 @@
 #include <vector>
-#include "ModelProperties.h"
+#include "Mesh.h"
 #include "ShaderObject.h"
+
 #ifndef HEXAGON_PLANE_H
 #define HEXAGON_PLANE_H
 
-class HexagonPlane
+class HexagonPlane : public Mesh
 {
 public:
-	HexagonPlane(ShaderObject shaderProgram);
+	HexagonPlane(ShaderObject* shaderProgram);
 	~HexagonPlane() = default;
-
-	void draw();
 
 private:
 	void GenerateBuffers();
@@ -21,10 +20,10 @@ private:
 	unsigned int VBO; //vertex buffer object
 	unsigned int EBO; //element buffer object
 
-	std::vector<ModelProperties::vertex> vertices;
-	std::vector<ModelProperties::index> indices;
+	std::vector<MeshProperties::position> vertices;
+	std::vector<MeshProperties::index> indices;
 
-	ShaderObject shader;
+	ShaderObject* shader;
 
 };
 

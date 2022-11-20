@@ -2,9 +2,12 @@
 #include "OpenGL_Helper.h"
 #define glCheckError() glCheckError_(__FILE__, __LINE__) 
 
-HexagonPlane::HexagonPlane(ShaderObject shaderProgram)
+HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	:shader(shaderProgram)
 {
+
+	assert(shader);
+
 	this->vertices.reserve(18);
 	this->indices.reserve(6);
 	//each triangle will have a different z to show mipmaps
@@ -56,23 +59,6 @@ HexagonPlane::HexagonPlane(ShaderObject shaderProgram)
 
 }
 
-void HexagonPlane::draw()
-{
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CW);
-
-	glUseProgram(shader.getProgram());
-	//glCheckError();
-
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, 3 * indices.size(), GL_UNSIGNED_INT, 0);
-	//glCheckError();
-
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CCW);
-
-}
-
 void HexagonPlane::GenerateBuffers()
 {
 	//generate the vertex array object
@@ -94,12 +80,10 @@ void HexagonPlane::BindBufferData()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	auto vertexSize = vertices.size() * 3 * sizeof(float);
 	glBufferData(GL_ARRAY_BUFFER, vertexSize, vertices.data(), GL_STATIC_DRAW);
-	//glCheckError();
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	auto indexSize = indices.size() * 3 * sizeof(float);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, indices.data(), GL_STATIC_DRAW);
-	//glCheckError();
 
 }
 
@@ -110,8 +94,7 @@ void HexagonPlane::SetVertexAttributes()
 
 	//with the buffer bound we set the attribute to describe how the vertex is layed out
 	//since i have only 1 element (position which is a 3 float element) this is the signature
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(ModelProperties::vertex), (void*)0);
-	//glCheckError();
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::position), (void*)0);
 	glEnableVertexAttribArray(0);
 
 }

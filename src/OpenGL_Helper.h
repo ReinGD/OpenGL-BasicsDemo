@@ -1,5 +1,4 @@
 #include <glad/glad.h>
-#include <iostream>
 #ifndef OPEN_GL_HELPER_H
 #define OPEN_GL_HELPER_H
 
@@ -18,7 +17,11 @@
 			case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
 			case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
 			}
-			std::cout << error << " | " << file << " (" << line << ")" << std::endl;
+			GDWriter::write(error.c_str());
+			GDWriter::write(" | ");
+			GDWriter::write(file);
+			GDWriter::write(" (");
+			GDWriter::write("({0})\n",line);
 		}
 		return errorCode;
 	}

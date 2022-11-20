@@ -1,5 +1,6 @@
 #ifndef RENDER_MATERIAL_H
 #define RENDER_MATERIAL_H
+#include <glad/glad.h>
 
 class RenderMaterial
 {

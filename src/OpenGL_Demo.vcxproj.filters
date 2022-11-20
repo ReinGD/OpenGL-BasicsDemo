@@ -11,9 +11,6 @@
     <Filter Include="OpenGL\glad">
       <UniqueIdentifier>{9c86f7d9-4591-45fb-a483-052396d5ff5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Geometry">
-      <UniqueIdentifier>{fa31b0f9-a650-4f1b-8b69-91a0a2a124da}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{c2d60d53-f5d8-4b4f-9493-d89143d57c6d}</UniqueIdentifier>
     </Filter>
@@ -22,6 +19,9 @@
     </Filter>
     <Filter Include="Source Files\Graphic Objects">
       <UniqueIdentifier>{a469388a-e677-4599-a092-e83840eaabc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Objects">
+      <UniqueIdentifier>{fa31b0f9-a650-4f1b-8b69-91a0a2a124da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -32,21 +32,30 @@
       <Filter>OpenGL\glad</Filter>
     </ClCompile>
     <ClCompile Include="HexagonPlane.cpp">
-      <Filter>Source Files\Geometry</Filter>
+      <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGame.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderProgram.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GraphicsObject.cpp">
+      <Filter>Source Files\Graphic Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsObject_Simple.cpp">
+      <Filter>Source Files\Graphic Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderObject.cpp">
+      <Filter>Source Files\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HexagonPlane.h">
-      <Filter>Source Files\Geometry</Filter>
+      <Filter>Source Files\Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ModelProperties.h">
-      <Filter>Source Files\Geometry</Filter>
+    <ClInclude Include="MeshProperties.h">
+      <Filter>Source Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="SimpleGame.h">
       <Filter>Source Files\Game</Filter>
@@ -65,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="RenderMaterial.h">
       <Filter>Source Files\Graphic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

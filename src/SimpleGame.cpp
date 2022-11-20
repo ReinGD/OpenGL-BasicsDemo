@@ -4,6 +4,7 @@
 #include "HexagonPlane.h"
 #include "ShaderObject.h"
 #include <iostream>
+#include "GraphicsObject_Simple.h"
 
 #define UNUSED_VAR(x) (void(x))
 
@@ -103,10 +104,16 @@ void SimpleGame::run()
 {
 
 	//shader program
-	ShaderObject shaderProgram(vertexShaderSource, fragmentShaderSource);
+	ShaderObject* shaderProgram = new ShaderObject(vertexShaderSource, fragmentShaderSource);
 
 	//this already sets the vbo 
-	HexagonPlane model(shaderProgram);
+	HexagonPlane* model = new HexagonPlane(shaderProgram);
+
+
+	//Set up the Graphics Object;
+
+	GraphicsObject_Simple* gObject = new GraphicsObject_Simple(model, shaderProgram);
+
 
 	/*
 		Graphics Object - > Contains the information for the shaders
@@ -117,7 +124,8 @@ void SimpleGame::run()
 	while (!glfwWindowShouldClose(window))
 	{
 		clearBuffer();
-		model.draw();
+
+		gObject->Render();
 
 
 		glfwSwapBuffers(window); //do context switching
@@ -128,6 +136,10 @@ void SimpleGame::run()
 			glfwSetWindowShouldClose(window, true);
 
 	}
+
+	delete gObject;
+	delete model;
+	delete shaderProgram;
 
 }
 
