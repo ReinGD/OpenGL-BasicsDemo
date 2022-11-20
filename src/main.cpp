@@ -1,8 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <iostream>
 #include "SimpleGame.h"
+#include <iostream>
 int main() 
 {
 	std::cout << "Hello OpenGL!\n";

@@ -1,7 +1,7 @@
 #include <glad/glad.h>
+#include <iostream>
 #ifndef OPEN_GL_HELPER_H
 #define OPEN_GL_HELPER_H
-#include <iostream>
 
 	static GLenum glCheckError_(const char* file, int line) {
 		GLenum errorCode;

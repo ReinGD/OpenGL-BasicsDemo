@@ -1,9 +1,9 @@
 #include "SimpleGame.h"
 #include <windows.h>
-#include <iostream>
 #include <cassert>
 #include "HexagonPlane.h"
 #include "ShaderProgram.h"
+#include <iostream>
 
 #define UNUSED_VAR(x) (void(x))
 

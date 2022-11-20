@@ -1,6 +1,5 @@
 #include "HexagonPlane.h"
 #include "OpenGL_Helper.h"
-#include <iostream>
 #define glCheckError() glCheckError_(__FILE__, __LINE__) 
 
 HexagonPlane::HexagonPlane(ShaderProgram shaderProgram)
@@ -10,6 +9,7 @@ HexagonPlane::HexagonPlane(ShaderProgram shaderProgram)
 	this->indices.reserve(6);
 	//each triangle will have a different z to show mipmaps
 	//each triangle is separate on purpose to show mipmap representation with z depth
+
 
 	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
 	this->vertices.emplace_back(0.25f, -0.50f, 0.00f);
