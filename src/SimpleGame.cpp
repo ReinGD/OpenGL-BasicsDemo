@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <cassert>
 #include "HexagonPlane.h"
-#include "ShaderProgram.h"
+#include "ShaderObject.h"
 #include <iostream>
 
 #define UNUSED_VAR(x) (void(x))
@@ -103,10 +103,17 @@ void SimpleGame::run()
 {
 
 	//shader program
-	ShaderProgram shaderProgram(vertexShaderSource, fragmentShaderSource);
+	ShaderObject shaderProgram(vertexShaderSource, fragmentShaderSource);
+
 	//this already sets the vbo 
 	HexagonPlane model(shaderProgram);
 
+	/*
+		Graphics Object - > Contains the information for the shaders
+		Game Object - > Contains the model data
+
+	*/
+	
 	while (!glfwWindowShouldClose(window))
 	{
 		clearBuffer();

@@ -1,13 +1,13 @@
 #include <vector>
 #include "ModelProperties.h"
-#include "ShaderProgram.h"
+#include "ShaderObject.h"
 #ifndef HEXAGON_PLANE_H
 #define HEXAGON_PLANE_H
 
 class HexagonPlane
 {
 public:
-	HexagonPlane(ShaderProgram shaderProgram);
+	HexagonPlane(ShaderObject shaderProgram);
 	~HexagonPlane() = default;
 
 	void draw();
@@ -24,7 +24,7 @@ private:
 	std::vector<ModelProperties::vertex> vertices;
 	std::vector<ModelProperties::index> indices;
 
-	ShaderProgram shader;
+	ShaderObject shader;
 
 };
 

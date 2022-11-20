@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="OpenGL">
       <UniqueIdentifier>{6625d5cc-5d28-492b-b393-83e77b2c5b9b}</UniqueIdentifier>
     </Filter>
@@ -23,6 +19,9 @@
     </Filter>
     <Filter Include="Source Files\Shaders">
       <UniqueIdentifier>{5c289889-c618-41bb-8d79-6e7effa148b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic Objects">
+      <UniqueIdentifier>{a469388a-e677-4599-a092-e83840eaabc4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,11 +51,20 @@
     <ClInclude Include="SimpleGame.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderProgram.h">
+    <ClInclude Include="ShaderObject.h">
       <Filter>Source Files\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="OpenGL_Helper.h">
       <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsObject_Simple.h">
+      <Filter>Source Files\Graphic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsObject.h">
+      <Filter>Source Files\Graphic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMaterial.h">
+      <Filter>Source Files\Graphic Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

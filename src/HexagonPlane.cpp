@@ -2,7 +2,7 @@
 #include "OpenGL_Helper.h"
 #define glCheckError() glCheckError_(__FILE__, __LINE__) 
 
-HexagonPlane::HexagonPlane(ShaderProgram shaderProgram)
+HexagonPlane::HexagonPlane(ShaderObject shaderProgram)
 	:shader(shaderProgram)
 {
 	this->vertices.reserve(18);

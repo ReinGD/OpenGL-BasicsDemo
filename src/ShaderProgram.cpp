@@ -1,8 +1,7 @@
-#include "ShaderProgram.h"
+#include "ShaderObject.h"
 #include <glad/glad.h>
-#include <iostream>
 
-ShaderProgram::ShaderProgram(const char* vertexShader, const char* fragmentShader)
+ShaderObject::ShaderObject(const char* vertexShader, const char* fragmentShader)
 	:_vertexShader(0), _fragmentShader(0), shaderProgram(0)
 {
 	_vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -17,7 +16,10 @@ ShaderProgram::ShaderProgram(const char* vertexShader, const char* fragmentShade
 	if (!success)
 	{
 		glGetShaderInfoLog(_vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+		GDWriter::write("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n");
+		GDWriter::write(infoLog);
+		GDWriter::write("\n");
+
 	}
 
 	_fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -30,7 +32,9 @@ ShaderProgram::ShaderProgram(const char* vertexShader, const char* fragmentShade
 	if (!success)
 	{
 		glGetShaderInfoLog(_fragmentShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+		GDWriter::write("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n");
+		GDWriter::write(infoLog);
+		GDWriter::write("\n");
 	}
 
 	shaderProgram = glCreateProgram();
@@ -42,19 +46,22 @@ ShaderProgram::ShaderProgram(const char* vertexShader, const char* fragmentShade
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (!success) {
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		std::cout << "ERROR::PROGRAM::LINK_FAILED\n" << infoLog << std::endl;
+		GDWriter::write("ERROR::PROGRAM::LINK_FAILED\n");
+		GDWriter::write(infoLog);
+		GDWriter::write("\n");
+
 	}
 
 }
 
-ShaderProgram::~ShaderProgram()
+ShaderObject::~ShaderObject()
 {
 	glDeleteShader(_vertexShader);
 	glDeleteShader(_fragmentShader);
 
 }
 
-unsigned int ShaderProgram::getProgram()
+unsigned int ShaderObject::getProgram()
 {
 	return shaderProgram;
 }

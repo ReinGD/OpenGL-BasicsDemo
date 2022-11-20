@@ -6,6 +6,7 @@
 
 */
 #include "GDMemTracker.h"
+#include "GDWriter.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>

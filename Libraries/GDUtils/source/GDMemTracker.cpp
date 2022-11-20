@@ -15,18 +15,13 @@ void GDMemTracker::Initialize() noexcept
 	GDMemTracker& tracker = GDMemTracker::privGetRef();
 
 	std::call_once(tracker.processBeginFlag, [&tracker]() noexcept
-	{
-			tracker.privOut("\n");
-			tracker.privOut("--------------------------------\n");
-			tracker.privOut("    Memory Tracking: start()    \n");
-			tracker.privOut("--------------------------------\n");
-			tracker.privOut("\n");
-			printf("--------------------------------\n");
-			printf("    Memory Tracking: start()    \n");
-			printf("--------------------------------\n");
-			printf("\n");
+	{		
+			GDWriter::write("\n");
+			GDWriter::write("------------------------------------------------------\n");
+			GDWriter::write("                Memory Tracking: Started              \n");
+			GDWriter::write("------------------------------------------------------\n");
+			GDWriter::write("\n");
 
-		
 	});
 
 }
@@ -79,11 +74,11 @@ void GDMemTracker::Terminate() noexcept
 
 			if (NormBlockLeakCount > 0)
 			{
-				tracker.privOut("------------------------------------------------------\n");
-				tracker.privOut(">>>   Memory Tracking: Leaks detected              <<<\n");
-				tracker.privOut(">>>   Double-click on file string to Leak location <<<\n");
-				tracker.privOut("------------------------------------------------------\n");
-				tracker.privOut("\n");
+				GDWriter::write("------------------------------------------------------\n");
+				GDWriter::write(">>>   Memory Tracking: Leaks detected              <<<\n");
+				GDWriter::write(">>>   Double-click on file string to Leak location <<<\n");
+				GDWriter::write("------------------------------------------------------\n");
+				GDWriter::write("\n");
  
 			}
 
@@ -119,9 +114,9 @@ void GDMemTracker::Terminate() noexcept
 							pAppMaxTmp = pTmp;
 						}
 
-						tracker.privOut("Leak(%d)  %d bytes ref:%d %s \n", i, pTmp->nDataSize, pTmp->lRequest, tracker.privStripDir(pTmp->szFileName));
-						tracker.privOut("   %s(%d) : <double-click> \n", &pTmp->szFileName[strlen(SOLUTION_DIR)], pTmp->nLine);
-						tracker.privOut("\n");
+						GDWriter::write("Leak(%d)  %d bytes ref:%d %s \n", i, pTmp->nDataSize, pTmp->lRequest, tracker.privStripDir(pTmp->szFileName));
+						GDWriter::write("   %s(%d) : <double-click> \n", &pTmp->szFileName[strlen(SOLUTION_DIR)], pTmp->nLine);
+						GDWriter::write("\n");
 					}
 
 					i++;
@@ -129,45 +124,39 @@ void GDMemTracker::Terminate() noexcept
 				pTmp = pTmp->pBlockHeaderPrev;
 			}
 
-			tracker.privOut("Memory Tracking statistics \n");
-			tracker.privOut("\n");
-			tracker.privOut("     Application files: \n");
-			tracker.privOut("                num of leaks: %d \n", appCount);
-			tracker.privOut("          total bytes leaked: %d \n", appTotalSize);
+			GDWriter::write("Memory Tracking statistics \n");
+			GDWriter::write("\n");
+			GDWriter::write("     Application files: \n");
+			GDWriter::write("                num of leaks: %d \n", appCount);
+			GDWriter::write("          total bytes leaked: %d \n", appTotalSize);
 			if (pAppMaxTmp != nullptr)
 			{
-				tracker.privOut("          largest individual: Leak(%d) size: %d \n", appMaxIndex, pAppMaxTmp->nDataSize);
+				GDWriter::write("          largest individual: Leak(%d) size: %d \n", appMaxIndex, pAppMaxTmp->nDataSize);
 			}
-			tracker.privOut("\n");
-			tracker.privOut("     External Libs: \n");
-			tracker.privOut("                num of leaks: %d \n", extCount);
-			tracker.privOut("          total bytes leaked: %d \n", extTotalSize);
+			GDWriter::write("\n");
+			GDWriter::write("     External Libs: \n");
+			GDWriter::write("                num of leaks: %d \n", extCount);
+			GDWriter::write("          total bytes leaked: %d \n", extTotalSize);
 
 			if (pExtMaxTmp != nullptr)
 			{
-				tracker.privOut("          largest individual: Leak(%d) size: %d \n", extMaxIndex, pExtMaxTmp->nDataSize);
+				GDWriter::write("          largest individual: Leak(%d) size: %d \n", extMaxIndex, pExtMaxTmp->nDataSize);
 			}
 
 
-			tracker.privOut("--------------------------------\n");
-			printf("--------------------------------\n");
+			GDWriter::write("------------------------------------------------------\n");
 			if (appCount)
 			{
-				tracker.privOut(">>> Memory Tracking: FAIL <<<<<<\n");
-				printf(">>> Memory Tracking: FAIL <<<<<<\n");
+				GDWriter::write(">>>>>> Memory Tracking: FAIL <<<<<<\n");
 			}
 			else
 			{
-				tracker.privOut("    Memory Tracking: PASS \n");
-				printf("    Memory Tracking: PASS \n");
+				GDWriter::write("                Memory Tracking: PASS \n");
 			}
-			tracker.privOut("--------------------------------\n");
-			tracker.privOut("    Memory Tracking: end()      \n");
-			tracker.privOut("--------------------------------\n");
-			printf("--------------------------------\n");
-			printf("    Memory Tracking: end()      \n");
-			printf("--------------------------------\n");
-			printf("\n");
+			GDWriter::write("------------------------------------------------------\n");
+			GDWriter::write("                Memory Tracking: Finished             \n");
+			GDWriter::write("------------------------------------------------------\n");
+			GDWriter::write("\n");
 	});
 }
 

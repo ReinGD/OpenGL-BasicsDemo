@@ -150,10 +150,13 @@
     <ClCompile Include="SimpleGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GraphicsObject.h" />
+    <ClInclude Include="GraphicsObject_Simple.h" />
     <ClInclude Include="HexagonPlane.h" />
     <ClInclude Include="ModelProperties.h" />
     <ClInclude Include="OpenGL_Helper.h" />
-    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="RenderMaterial.h" />
+    <ClInclude Include="ShaderObject.h" />
     <ClInclude Include="SimpleGame.h" />
   </ItemGroup>
   <ItemGroup>

@@ -5,10 +5,13 @@
 #include <iostream>
 int main() 
 {
-	std::cout << "Hello OpenGL!\n";
+	GDWriter::write("Staring OpenGL\n");
+
 	SimpleGame simple;
 	simple.InitializeOpenGL();
 	simple.run();
 	simple.TerminateOpenGL();
+
+	GDWriter::write("Exiting OpenGL\n");
 }
 #endif // !MAIN_H
