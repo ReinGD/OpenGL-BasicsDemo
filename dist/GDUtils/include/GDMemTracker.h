@@ -52,15 +52,11 @@ public:
 private:
 	static GDMemTracker& privGetRef() noexcept;
 
-	void privOut(const char* const fmt, ...) noexcept;
 	char* privStripDir(const char* const pInName) noexcept;
 
 private:
 	std::once_flag processBeginFlag;
 	std::once_flag processEndFlag;
-
-	char privBuff[traceBufferSize];
-	std::mutex mtx;
 };
 
 #endif // !GD_MEM_TRACKER_H

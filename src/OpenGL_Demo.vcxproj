@@ -80,7 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SOLUTION_DIR=R"($(SolutionDir))";WIN32;_DEBUG;_GLFW_WIN32;_GLFW_USE_CONFIG_H;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\File\include;$(SolutionDir)Libraries\GDUtils\include;$(SolutionDir)Libraries\glad\src;$(SolutionDIr)Libraries\glad\include;$(SolutionDir)Libraries\glm-master\glm;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb-master;$(SolutionDir)Libraries\File\include;$(SolutionDir)Libraries\GDUtils\include;$(SolutionDir)Libraries\glad\src;$(SolutionDIr)Libraries\glad\include;$(SolutionDir)Libraries\glm-master\glm;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>Framework.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -146,15 +146,18 @@
     <ClCompile Include="..\Libraries\glad\src\glad.c" />
     <ClCompile Include="GraphicsObject.cpp" />
     <ClCompile Include="GraphicsObject_Simple.cpp" />
+    <ClCompile Include="GraphicsObject_Texture.cpp" />
     <ClCompile Include="HexagonPlane.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ShaderObject.cpp" />
     <ClCompile Include="SimpleGame.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsObject.h" />
     <ClInclude Include="GraphicsObject_Simple.h" />
+    <ClInclude Include="GraphicsObject_Texture.h" />
     <ClInclude Include="HexagonPlane.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshProperties.h" />
@@ -162,6 +165,7 @@
     <ClInclude Include="RenderMaterial.h" />
     <ClInclude Include="ShaderObject.h" />
     <ClInclude Include="SimpleGame.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libraries\File\File.vcxproj">
@@ -170,6 +174,9 @@
     <ProjectReference Include="..\Libraries\GDUtils\GDUtils.vcxproj">
       <Project>{d8a28f6f-a740-427e-9e20-7afb436d51f6}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ModelArchitecture.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

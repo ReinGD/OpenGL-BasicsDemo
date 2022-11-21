@@ -3,8 +3,8 @@
 #include <cassert>
 #include "HexagonPlane.h"
 #include "ShaderObject.h"
-#include <iostream>
 #include "GraphicsObject_Simple.h"
+#include "GraphicsObject_Texture.h"
 
 #define UNUSED_VAR(x) (void(x))
 
@@ -12,17 +12,25 @@
 
 const char* vertexShaderSource = "#version 450 core\n"
 "layout (location = 0) in vec3 aPos;\n"
+"layout (location = 1) in vec2 aTexCoord;\n"
+"\n"
+"out vec2 texCoord;\n"
 "void main()\n"
 "{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"   gl_Position = vec4(aPos, 1.0);\n"
+"   texCoord = aTexCoord;\n"
 "}\0";
 
 const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "\n"
+"in vec2 texCoord;\n"
+"\n"
+"uniform sampler2D ourTexture;\n"
+"\n"
 "void main()\n"
 "{\n"
-"	FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f); \n"
+"	FragColor = texture(ourTexture, texCoord); \n"
 "}\n"
 ";\n";
 
@@ -46,7 +54,7 @@ void SimpleGame::InitializeOpenGL()
 	window = glfwCreateWindow(windowWidth, windowHeight, "OpenGL Demo", NULL, NULL);
 	if (!window)
 	{
-		std::cout << "FAILED TO CREATE WINDOW\n";
+		GDWriter::write("FAILED TO CREATE WINDOW\n");
 		glfwTerminate();
 		assert(false);
 
@@ -57,7 +65,7 @@ void SimpleGame::InitializeOpenGL()
 	//check for glad (this has to be executed after the window is set to context)
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		std::cout << "FAILED TO INITIALIZE GLAD\n";
+		GDWriter::write("FAILED TO INITIALIZE GLAD\n");
 		assert(false);
 	}
 
@@ -109,10 +117,11 @@ void SimpleGame::run()
 	//this already sets the vbo 
 	HexagonPlane* model = new HexagonPlane(shaderProgram);
 
-
+	Texture* texture = new Texture("wall.jpg");
 	//Set up the Graphics Object;
 
-	GraphicsObject_Simple* gObject = new GraphicsObject_Simple(model, shaderProgram);
+	//GraphicsObject_Simple* gObject = new GraphicsObject_Simple(model, shaderProgram);
+	GraphicsObject_Texture* gObject = new GraphicsObject_Texture(model, texture, shaderProgram);
 
 
 	/*
@@ -138,6 +147,7 @@ void SimpleGame::run()
 	}
 
 	delete gObject;
+	delete texture;
 	delete model;
 	delete shaderProgram;
 
@@ -224,45 +234,60 @@ void SimpleGame::onDebugMessage(GLenum source,
 	// ignore non-significant error/warning codes
 	if (id == 131169 || id == 131185 || id == 131218 || id == 131204) return;
 
-	std::cout << "---------------" << std::endl;
-	std::cout << "Debug message (" << id << "): " << message << std::endl;
+	GDWriter::write("---------------\n");
+	GDWriter::write("Debug message ({0})", id);
+	GDWriter::write(message);
+	GDWriter::write("\n");
 
+	std::string sourceString; 
 	switch (source)
 	{
-	case GL_DEBUG_SOURCE_API:             std::cout << "Source: API"; break;
-	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:   std::cout << "Source: Window System"; break;
-	case GL_DEBUG_SOURCE_SHADER_COMPILER: std::cout << "Source: Shader Compiler"; break;
-	case GL_DEBUG_SOURCE_THIRD_PARTY:     std::cout << "Source: Third Party"; break;
-	case GL_DEBUG_SOURCE_APPLICATION:     std::cout << "Source: Application"; break;
-	case GL_DEBUG_SOURCE_OTHER:           std::cout << "Source: Other"; break;
-	} std::cout << std::endl;
+	case GL_DEBUG_SOURCE_API:             sourceString = "Source: API"; break;
+	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:   sourceString = "Source: Window System"; break;
+	case GL_DEBUG_SOURCE_SHADER_COMPILER: sourceString = "Source: Shader Compiler"; break;
+	case GL_DEBUG_SOURCE_THIRD_PARTY:     sourceString = "Source: Third Party"; break;
+	case GL_DEBUG_SOURCE_APPLICATION:     sourceString = "Source: Application"; break;
+	case GL_DEBUG_SOURCE_OTHER:           sourceString = "Source: Other"; break;
+	}
+
+	GDWriter::write(sourceString.c_str());
+	GDWriter::write("\n");
+
+	std::string typeString;
 
 	switch (type)
 	{
-	case GL_DEBUG_TYPE_ERROR:               std::cout << "Type: Error"; break;
-	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: std::cout << "Type: Deprecated Behaviour"; break;
-	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:  std::cout << "Type: Undefined Behaviour"; break;
-	case GL_DEBUG_TYPE_PORTABILITY:         std::cout << "Type: Portability"; break;
-	case GL_DEBUG_TYPE_PERFORMANCE:         std::cout << "Type: Performance"; break;
-	case GL_DEBUG_TYPE_MARKER:              std::cout << "Type: Marker"; break;
-	case GL_DEBUG_TYPE_PUSH_GROUP:          std::cout << "Type: Push Group"; break;
-	case GL_DEBUG_TYPE_POP_GROUP:           std::cout << "Type: Pop Group"; break;
-	case GL_DEBUG_TYPE_OTHER:               std::cout << "Type: Other"; break;
-	} std::cout << std::endl;
+	case GL_DEBUG_TYPE_ERROR:               typeString = "Type: Error"; break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: typeString = "Type: Deprecated Behaviour"; break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:  typeString = "Type: Undefined Behaviour"; break;
+	case GL_DEBUG_TYPE_PORTABILITY:         typeString = "Type: Portability"; break;
+	case GL_DEBUG_TYPE_PERFORMANCE:         typeString = "Type: Performance"; break;
+	case GL_DEBUG_TYPE_MARKER:              typeString = "Type: Marker"; break;
+	case GL_DEBUG_TYPE_PUSH_GROUP:          typeString = "Type: Push Group"; break;
+	case GL_DEBUG_TYPE_POP_GROUP:           typeString = "Type: Pop Group"; break;
+	case GL_DEBUG_TYPE_OTHER:               typeString = "Type: Other"; break;
+	} 
+
+	GDWriter::write(typeString.c_str());
+	GDWriter::write("\n");
+
+	std::string severityString;
+
 
 	switch (severity)
 	{
-	case GL_DEBUG_SEVERITY_HIGH:         std::cout << "Severity: high"; break;
-	case GL_DEBUG_SEVERITY_MEDIUM:       std::cout << "Severity: medium"; break;
-	case GL_DEBUG_SEVERITY_LOW:          std::cout << "Severity: low"; break;
-	case GL_DEBUG_SEVERITY_NOTIFICATION: std::cout << "Severity: notification"; break;
-	} std::cout << std::endl;
-	std::cout << std::endl;
-#ifdef _WIN32
-	OutputDebugStringA(message);
-	OutputDebugStringA("\n");
+	case GL_DEBUG_SEVERITY_HIGH:         severityString = "Severity: high"; break;
+	case GL_DEBUG_SEVERITY_MEDIUM:       severityString = "Severity: medium"; break;
+	case GL_DEBUG_SEVERITY_LOW:          severityString = "Severity: low"; break;
+	case GL_DEBUG_SEVERITY_NOTIFICATION: severityString = "Severity: notification"; break;
+	} 
+
+	GDWriter::write(severityString.c_str());
+	GDWriter::write("\n");
+
+	GDWriter::write(message);
+	GDWriter::write("\n");
 
 	DebugBreak();
-#endif /* _WIN32 */
 }
 

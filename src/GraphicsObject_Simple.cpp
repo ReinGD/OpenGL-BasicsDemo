@@ -21,8 +21,6 @@ void GraphicsObject_Simple::SetDataGPU()
 {
 	glBindVertexArray(this->GetMesh().VAO);
 	this->pShaderObject->SetActive();
-
-
 }
 
 void GraphicsObject_Simple::Draw()

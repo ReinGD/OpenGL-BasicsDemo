@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Object capable of being rendered">
+    <Position X="9.014" Y="0.882" Height="0.291" Width="2.214" />
+  </Comment>
+  <Comment CommentText="Object containing model data for rendering">
+    <Position X="5.771" Y="0.889" Height="0.291" Width="2.985" />
+  </Comment>
+  <Comment CommentText="Readies the object for OpenGL Draw">
+    <Position X="9.139" Y="3.813" Height="0.291" Width="2.492" />
+  </Comment>
+  <Comment CommentText="Sets the VAOs and data based on GraphicObject type">
+    <Position X="8.743" Y="6.417" Height="0.306" Width="3.221" />
+  </Comment>
+  <Comment CommentText="Contains the shader program">
+    <Position X="6.326" Y="5.549" Height="0.312" Width="1.901" />
+  </Comment>
+  <Comment CommentText="Specific models">
+    <Position X="3.785" Y="1.632" Height="0.312" Width="1.096" />
+  </Comment>
+  <Class Name="RenderMaterial">
+    <Position X="9" Y="1.25" Width="2.75" />
+    <Members>
+      <Method Name="~RenderMaterial" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAABAAAABAAAgAAAAAAEAAAAAAQAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>RenderMaterial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GraphicsObject">
+    <Position X="9.25" Y="4.25" Width="2.25" />
+    <Members>
+      <Method Name="~GraphicsObject" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="RenderMaterial">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.61" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <AssociationLine Name="pShaderObject" Type="ShaderObject">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.61" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABBAAAAAIABAAAAAAAAAAAABAgEAAAAAA=</HashCode>
+      <FileName>GraphicsObject.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pMesh" />
+      <Field Name="pShaderObject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GraphicsObject_Simple">
+    <Position X="9.25" Y="6.75" Width="2.25" />
+    <Members>
+      <Method Name="~GraphicsObject_Simple" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="GraphicsObject">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.435" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AIAABAAACBAAAgAAAAAAAAAAAAAAAAAAAAAgBAAAAAA=</HashCode>
+      <FileName>GraphicsObject_Simple.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mesh">
+    <Position X="6.25" Y="1.25" Width="2" />
+    <Members>
+      <Method Name="~Mesh" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgCAAgAAAAEAQgQAgAAAAAAAAAAAQAAQAQIgAAAAACA=</HashCode>
+      <FileName>Mesh.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShaderObject">
+    <Position X="6.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAQAAAAAAIAKAQAQA=</HashCode>
+      <FileName>ShaderObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HexagonPlane">
+    <Position X="3.25" Y="2" Width="2.25" />
+    <Members>
+      <Method Name="~HexagonPlane" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAQAQAAAAAAAAAAAAQAAAQAQAAAEAQAAA=</HashCode>
+      <FileName>HexagonPlane.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

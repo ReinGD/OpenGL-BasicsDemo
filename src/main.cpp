@@ -2,7 +2,6 @@
 #define MAIN_H
 
 #include "SimpleGame.h"
-#include <iostream>
 int main() 
 {
 	GDWriter::write("Staring OpenGL\n");

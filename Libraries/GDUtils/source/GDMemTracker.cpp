@@ -5,7 +5,6 @@
 
 GDMemTracker::GDMemTracker() noexcept
 {
-	memset(&privBuff[0], 0, traceBufferSize);
 }
 
 void GDMemTracker::Initialize() noexcept
@@ -36,7 +35,7 @@ void GDMemTracker::Terminate() noexcept
 			_CrtMemState state{ 0 };
 			_CrtMemCheckpoint(&state);
 
-			tracker.privOut("\n");
+			GDWriter::write("\n");
 			_CrtMemBlockHeader* pTmp;
 			pTmp = reinterpret_cast<GDMemTracker::_CrtMemBlockHeader*> (state.pBlockHeader);
 
@@ -164,29 +163,6 @@ GDMemTracker& GDMemTracker::privGetRef() noexcept
 {
 	static GDMemTracker tracker;
 	return tracker;
-}
-
-void GDMemTracker::privOut(const char* const fmt, ...) noexcept
-{
-	GDMemTracker& tracker = GDMemTracker::privGetRef();
-	
-	//lock the mutex
-	std::lock_guard<std::mutex> lock(tracker.mtx);
-
-	va_list args;
-
-
-	#pragma warning( push )
-	#pragma warning( disable : 26492 )
-	#pragma warning( disable : 26481 )
-		va_start(args, fmt);
-	#pragma warning( pop )
-
-	vsprintf_s(&tracker.privBuff[0], traceBufferSize, fmt, args);
-	OutputDebugString(&tracker.privBuff[0]);
-
-	args = static_cast<va_list> (nullptr);
-
 }
 
 char* GDMemTracker::privStripDir(const char* const pInName) noexcept

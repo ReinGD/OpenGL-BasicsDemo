@@ -102,6 +102,11 @@ public:
 			:pos(),uv(),norm()
 		{};
 
+		vertex(float x, float y, float z, float u, float v, float nx, float ny, float nz) 
+			:pos(x,y,z),uv(u,v),norm(nx,ny,nz)
+		{
+			
+		};
 		vertex(const position in_pos, const textureUV in_uv, const normals in_normals)
 			:pos(), uv(), norm()
 		{

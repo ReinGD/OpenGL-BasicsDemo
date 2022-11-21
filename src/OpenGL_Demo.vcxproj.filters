@@ -23,6 +23,12 @@
     <Filter Include="Source Files\Game Objects">
       <UniqueIdentifier>{fa31b0f9-a650-4f1b-8b69-91a0a2a124da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Diagrams">
+      <UniqueIdentifier>{ead3199c-b45f-4bbe-8c64-852d0d19b6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Textures">
+      <UniqueIdentifier>{e04d511d-9242-4471-8345-fb0706ee4b4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +54,12 @@
     </ClCompile>
     <ClCompile Include="ShaderObject.cpp">
       <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsObject_Texture.cpp">
+      <Filter>Source Files\Graphic Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,5 +90,16 @@
     <ClInclude Include="Mesh.h">
       <Filter>Source Files\Game Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsObject_Texture.h">
+      <Filter>Source Files\Graphic Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ModelArchitecture.cd">
+      <Filter>Source Files\Diagrams</Filter>
+    </None>
   </ItemGroup>
 </Project>

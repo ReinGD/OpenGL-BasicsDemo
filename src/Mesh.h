@@ -4,6 +4,8 @@
 #include "MeshProperties.h"
 #include <cassert>
 
+#define glCheckError() glCheckError_(__FILE__, __LINE__) 
+
 //this will be part of manager dlinks
 class Mesh //: public DLink
 {
@@ -13,8 +15,12 @@ public:
 	Mesh(Mesh&&) = delete;
 	Mesh& operator= (const Mesh&) = delete;
 	Mesh& operator= (Mesh&&) = delete;
-
 	virtual ~Mesh();
+
+protected: 
+	virtual void GenerateBuffers() = 0;
+	virtual void BindBufferData() = 0;
+	virtual void SetVertexAttributes() = 0;
 
 	void Wash();
 	//Data

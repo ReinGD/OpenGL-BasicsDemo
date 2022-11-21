@@ -11,18 +11,20 @@ public:
 	HexagonPlane(ShaderObject* shaderProgram);
 	~HexagonPlane() = default;
 
-private:
-	void GenerateBuffers();
-	void BindBufferData();
-	void SetVertexAttributes();
-private:
-	unsigned int VAO; //vertex array object
-	unsigned int VBO; //vertex buffer object
-	unsigned int EBO; //element buffer object
+protected:
+	virtual void GenerateBuffers() override;
+	virtual void BindBufferData() override;
+	virtual void SetVertexAttributes() override;
 
+private:
+	//VBOS
 	std::vector<MeshProperties::position> vertices;
+	std::vector<MeshProperties::textureUV> textures;
+	
+	//EBO
 	std::vector<MeshProperties::index> indices;
 
+	//SHADER
 	ShaderObject* shader;
 
 };

@@ -1,6 +1,5 @@
 #include "HexagonPlane.h"
 #include "OpenGL_Helper.h"
-#define glCheckError() glCheckError_(__FILE__, __LINE__) 
 
 HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	:shader(shaderProgram)
@@ -8,15 +7,26 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 
 	assert(shader);
 
-	this->vertices.reserve(18);
-	this->indices.reserve(6);
+	this->numTriangles = 6;
+	this->numVerts = 18;
+
+	//this->numTriangles = 1;
+	//this->numVerts = 3;
+
+	this->vertices.reserve(this->numVerts);
+	this->textures.reserve(this->numVerts);
+	this->indices.reserve(this->numTriangles);
+
 	//each triangle will have a different z to show mipmaps
 	//each triangle is separate on purpose to show mipmap representation with z depth
-
 
 	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
 	this->vertices.emplace_back(0.25f, -0.50f, 0.00f);
 	this->vertices.emplace_back(-0.25f, -0.50f, 0.00f);
+
+	this->textures.emplace_back(0.50f, 0.50f);
+	this->textures.emplace_back(1.00f, 1.00f);
+	this->textures.emplace_back(0.00f, 1.00f);
 
 	this->indices.emplace_back(0, 1, 2);
 
@@ -24,11 +34,19 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	this->vertices.emplace_back(-0.25f, 0.50f, 0.20f);
 	this->vertices.emplace_back(0.25f, 0.50f, 0.20f);
 
+	this->textures.emplace_back(0.50f, 0.50f);
+	this->textures.emplace_back(1.00f, 1.00f);
+	this->textures.emplace_back(0.00f, 1.00f);
+
 	this->indices.emplace_back(3, 4, 5);
 
 	this->vertices.emplace_back(0.00f, 0.00f, 0.40f);
 	this->vertices.emplace_back(-0.25f, -0.50f, 0.40f);
 	this->vertices.emplace_back(-0.50f, 0.00f, 0.40f);
+
+	this->textures.emplace_back(0.50f, 0.50f);
+	this->textures.emplace_back(1.00f, 1.00f);
+	this->textures.emplace_back(0.00f, 1.00f);
 
 	this->indices.emplace_back(6, 7, 8);
 
@@ -37,6 +55,10 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	this->vertices.emplace_back(0.50f, 0.00f, 0.60f);
 	this->vertices.emplace_back(0.25f, -0.50f, 0.60f);
 
+	this->textures.emplace_back(0.50f, 0.50f);
+	this->textures.emplace_back(1.00f, 1.00f);
+	this->textures.emplace_back(0.00f, 1.00f);
+
 	this->indices.emplace_back(9, 10, 11);
 
 
@@ -44,12 +66,20 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	this->vertices.emplace_back(-0.50f, 0.00f, 0.80f);
 	this->vertices.emplace_back(-0.25f, 0.50f, 0.80f);
 
+	this->textures.emplace_back(0.50f, 0.50f);
+	this->textures.emplace_back(1.00f, 1.00f);
+	this->textures.emplace_back(0.00f, 1.00f);
+
 	this->indices.emplace_back(12, 13, 14);
 
 
 	this->vertices.emplace_back(0.00f, 0.00f, 1.00f);
 	this->vertices.emplace_back(0.25f, 0.50f, 1.00f);
 	this->vertices.emplace_back(0.50f, 0.00f, 1.00f);
+
+	this->textures.emplace_back(0.50f, 0.50f);
+	this->textures.emplace_back(1.00f, 1.00f);
+	this->textures.emplace_back(0.00f, 1.00f);
 
 	this->indices.emplace_back(15, 16, 17);
 
@@ -62,39 +92,46 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 void HexagonPlane::GenerateBuffers()
 {
 	//generate the vertex array object
-	glGenVertexArrays(1, &VAO);
+	glGenVertexArrays(1, &this->VAO);
 	//generate an open gl buffer to store vertex data
-	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &this->VBO_Verts);
+	//generate an open gl buffer to store texture data
+	glGenBuffers(1, &this->VBO_Texts);
 	//generate an open gl buffer to store index data
-	glGenBuffers(1, &EBO);
+	glGenBuffers(1, &this->EBO);
 }
 
 void HexagonPlane::BindBufferData()
 {
 	//bind it
-	glBindVertexArray(VAO);
-
-	while (glGetError() != GL_NO_ERROR);
-
-	//this sets the data to the opengl buffers generated earlier
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	auto vertexSize = vertices.size() * 3 * sizeof(float);
-	glBufferData(GL_ARRAY_BUFFER, vertexSize, vertices.data(), GL_STATIC_DRAW);
+	glBindVertexArray(this->VAO);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	auto indexSize = indices.size() * 3 * sizeof(float);
+	auto indexSize = indices.size() * sizeof(MeshProperties::index);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, indices.data(), GL_STATIC_DRAW);
+	glCheckError();
 
 }
 
 void HexagonPlane::SetVertexAttributes()
 {
 
-	while (glGetError() != GL_NO_ERROR);
-
 	//with the buffer bound we set the attribute to describe how the vertex is layed out
-	//since i have only 1 element (position which is a 3 float element) this is the signature
+	//this sets the data to the opengl buffers generated earlier
+	glBindBuffer(GL_ARRAY_BUFFER, this->VBO_Verts);
+	auto vertexSize = vertices.size() * sizeof(MeshProperties::position);
+	glBufferData(GL_ARRAY_BUFFER, vertexSize, vertices.data(), GL_STATIC_DRAW);
+	glCheckError();
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::position), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, this->VBO_Texts);
+	auto textSize = textures.size() * sizeof(MeshProperties::textureUV);
+	glBufferData(GL_ARRAY_BUFFER, textSize, textures.data(), GL_STATIC_DRAW);
+	glCheckError();
+
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::textureUV), (void*)0);
+	glEnableVertexAttribArray(1);
 
 }

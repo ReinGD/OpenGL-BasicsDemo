@@ -3,6 +3,7 @@
 
 #include "RenderMaterial.h"
 #include "ShaderObject.h"
+#include "Texture.h"
 #include "Mesh.h"
 
 class GraphicsObject : public RenderMaterial
