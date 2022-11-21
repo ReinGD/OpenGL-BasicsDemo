@@ -177,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ModelArchitecture.cd" />
+    <None Include="texture.fs.glsl" />
+    <None Include="texture.vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

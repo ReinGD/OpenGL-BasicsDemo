@@ -5,34 +5,10 @@
 #include "ShaderObject.h"
 #include "GraphicsObject_Simple.h"
 #include "GraphicsObject_Texture.h"
+#include "FileHelper.h"
 
 #define UNUSED_VAR(x) (void(x))
 
-
-
-const char* vertexShaderSource = "#version 450 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec2 aTexCoord;\n"
-"\n"
-"out vec2 texCoord;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos, 1.0);\n"
-"   texCoord = aTexCoord;\n"
-"}\0";
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"\n"
-"in vec2 texCoord;\n"
-"\n"
-"uniform sampler2D ourTexture;\n"
-"\n"
-"void main()\n"
-"{\n"
-"	FragColor = texture(ourTexture, texCoord); \n"
-"}\n"
-";\n";
 
 SimpleGame::SimpleGame()
 	: _vsync(false), window(nullptr), windowWidth(800), windowHeight(800)
@@ -110,14 +86,22 @@ void SimpleGame::TerminateOpenGL()
 
 void SimpleGame::run()
 {
+	//need to eliminate double output TODO
+	GD::File::Error error;
+	std::string vertexShader = FileHelper::FileOpenS("texture.vs.glsl", GD::File::Mode::READ, &error);
+	assert(error == GD::File::Error::SUCCESS);
+	std::string fragmentShader = FileHelper::FileOpenS("texture.fs.glsl", GD::File::Mode::READ, &error);
+	assert(error == GD::File::Error::SUCCESS);
 
 	//shader program
-	ShaderObject* shaderProgram = new ShaderObject(vertexShaderSource, fragmentShaderSource);
+	ShaderObject* shaderProgram = new ShaderObject(vertexShader.c_str(), fragmentShader.c_str());
 
 	//this already sets the vbo 
 	HexagonPlane* model = new HexagonPlane(shaderProgram);
 
+	//set up the texture
 	Texture* texture = new Texture("wall.jpg");
+
 	//Set up the Graphics Object;
 
 	//GraphicsObject_Simple* gObject = new GraphicsObject_Simple(model, shaderProgram);

@@ -101,5 +101,11 @@
     <None Include="ModelArchitecture.cd">
       <Filter>Source Files\Diagrams</Filter>
     </None>
+    <None Include="texture.fs.glsl">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="texture.vs.glsl">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
