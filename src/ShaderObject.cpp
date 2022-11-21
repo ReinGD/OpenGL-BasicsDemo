@@ -1,5 +1,6 @@
 #include "ShaderObject.h"
 #include <glad/glad.h>
+#include <cassert>
 
 ShaderObject::ShaderObject(const char* vertexShader, const char* fragmentShader)
 	:_vertexShader(0), _fragmentShader(0), shaderProgram(0)
@@ -69,4 +70,12 @@ unsigned int ShaderObject::getProgram() const
 void ShaderObject::SetActive() const
 {
 	glUseProgram(this->getProgram());
+}
+
+int ShaderObject::GetUniformLocation(const char* const uniformName) const
+{
+	assert(uniformName);
+	int location = glGetUniformLocation(this->shaderProgram, uniformName);
+	assert(location != -1);
+	return location;
 }

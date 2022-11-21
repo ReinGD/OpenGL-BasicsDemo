@@ -1,5 +1,7 @@
+#pragma once
 #ifndef FRAMEWORK_H
 #define FRAMEWORK_H
+
 /*
 	This memory tracker should be enabled only on debug,
 	release should not be affected

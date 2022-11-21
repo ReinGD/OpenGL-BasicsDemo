@@ -88,38 +88,40 @@ void SimpleGame::run()
 {
 	//need to eliminate double output TODO
 	GD::File::Error error;
-	std::string vertexShader = FileHelper::FileOpenS("texture.vs.glsl", GD::File::Mode::READ, &error);
+	std::string vertexShader = FileHelper::FileOpenS("positioned_texture.vs.glsl", GD::File::Mode::READ, &error);
 	assert(error == GD::File::Error::SUCCESS);
-	std::string fragmentShader = FileHelper::FileOpenS("texture.fs.glsl", GD::File::Mode::READ, &error);
+	std::string fragmentShader = FileHelper::FileOpenS("positioned_texture.fs.glsl", GD::File::Mode::READ, &error);
 	assert(error == GD::File::Error::SUCCESS);
 
 	//shader program
 	ShaderObject* shaderProgram = new ShaderObject(vertexShader.c_str(), fragmentShader.c_str());
 
 	//this already sets the vbo 
-	HexagonPlane* model = new HexagonPlane(shaderProgram);
+	HexagonPlane* model = new HexagonPlane();
 
 	//set up the texture
-	Texture* texture = new Texture("wall.jpg");
+	Texture* texture = new Texture("wall.dds", Texture::Mode::Mipmapped);
 
 	//Set up the Graphics Object;
-
-	//GraphicsObject_Simple* gObject = new GraphicsObject_Simple(model, shaderProgram);
 	GraphicsObject_Texture* gObject = new GraphicsObject_Texture(model, texture, shaderProgram);
 
 
 	/*
-		Graphics Object - > Contains the information for the shaders
-		Game Object - > Contains the model data
-
+		Graphics Object - > Contains the behaviour to render the object
+		Game Object - > Contains the model data(VAO,VBOS,EBO)
+		Texture -> Contains the Texture id to be passed to the Graphics Object
+		Shader -> Contains the vertex and fragment shader to be used
+		Graphics Object points to a Game Object to get this data
 	*/
 	
+	//the only reason the object changes color is because the mipmaps are of different color
+	//they are being interpolated as the object gets farther away
+
 	while (!glfwWindowShouldClose(window))
 	{
 		clearBuffer();
 
 		gObject->Render();
-
 
 		glfwSwapBuffers(window); //do context switching
 		glfwPollEvents();

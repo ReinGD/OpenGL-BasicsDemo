@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 #include <mutex>
 #ifndef GD_WRITTER_H

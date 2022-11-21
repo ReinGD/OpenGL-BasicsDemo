@@ -8,7 +8,7 @@
 class HexagonPlane : public Mesh
 {
 public:
-	HexagonPlane(ShaderObject* shaderProgram);
+	HexagonPlane();
 	~HexagonPlane() = default;
 
 protected:
@@ -23,9 +23,6 @@ private:
 	
 	//EBO
 	std::vector<MeshProperties::index> indices;
-
-	//SHADER
-	ShaderObject* shader;
 
 };
 

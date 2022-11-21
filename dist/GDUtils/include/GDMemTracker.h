@@ -1,3 +1,4 @@
+#pragma once
 #include <mutex>
 #ifndef GD_MEM_TRACKER_H
 #define GD_MEM_TRACKER_H

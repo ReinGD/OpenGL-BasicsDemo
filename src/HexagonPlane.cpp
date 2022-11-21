@@ -1,24 +1,20 @@
 #include "HexagonPlane.h"
 #include "OpenGL_Helper.h"
 
-HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
-	:shader(shaderProgram)
+HexagonPlane::HexagonPlane()
 {
 
-	assert(shader);
 
 	this->numTriangles = 6;
 	this->numVerts = 18;
 
-	//this->numTriangles = 1;
-	//this->numVerts = 3;
 
 	this->vertices.reserve(this->numVerts);
 	this->textures.reserve(this->numVerts);
 	this->indices.reserve(this->numTriangles);
 
-	//each triangle will have a different z to show mipmaps
-	//each triangle is separate on purpose to show mipmap representation with z depth
+	//each triangle will have a different texture coordinate
+	//each triangle is separate on purpose to show texture 
 
 	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
 	this->vertices.emplace_back(0.25f, -0.50f, 0.00f);
@@ -30,9 +26,9 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 
 	this->indices.emplace_back(0, 1, 2);
 
-	this->vertices.emplace_back(0.00f, 0.00f, 0.20f);
-	this->vertices.emplace_back(-0.25f, 0.50f, 0.20f);
-	this->vertices.emplace_back(0.25f, 0.50f, 0.20f);
+	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
+	this->vertices.emplace_back(-0.25f, 0.50f, 0.00f);
+	this->vertices.emplace_back(0.25f, 0.50f, 0.00f);
 
 	this->textures.emplace_back(0.50f, 0.50f);
 	this->textures.emplace_back(1.00f, 1.00f);
@@ -40,9 +36,9 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 
 	this->indices.emplace_back(3, 4, 5);
 
-	this->vertices.emplace_back(0.00f, 0.00f, 0.40f);
-	this->vertices.emplace_back(-0.25f, -0.50f, 0.40f);
-	this->vertices.emplace_back(-0.50f, 0.00f, 0.40f);
+	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
+	this->vertices.emplace_back(-0.25f, -0.50f, 0.00f);
+	this->vertices.emplace_back(-0.50f, 0.00f, 0.00f);
 
 	this->textures.emplace_back(0.50f, 0.50f);
 	this->textures.emplace_back(1.00f, 1.00f);
@@ -51,9 +47,9 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	this->indices.emplace_back(6, 7, 8);
 
 
-	this->vertices.emplace_back(0.00f, 0.00f, 0.60f);
-	this->vertices.emplace_back(0.50f, 0.00f, 0.60f);
-	this->vertices.emplace_back(0.25f, -0.50f, 0.60f);
+	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
+	this->vertices.emplace_back(0.50f, 0.00f, 0.00f);
+	this->vertices.emplace_back(0.25f, -0.50f, 0.00f);
 
 	this->textures.emplace_back(0.50f, 0.50f);
 	this->textures.emplace_back(1.00f, 1.00f);
@@ -62,9 +58,9 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	this->indices.emplace_back(9, 10, 11);
 
 
-	this->vertices.emplace_back(0.00f, 0.00f, 0.80f);
-	this->vertices.emplace_back(-0.50f, 0.00f, 0.80f);
-	this->vertices.emplace_back(-0.25f, 0.50f, 0.80f);
+	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
+	this->vertices.emplace_back(-0.50f, 0.00f, 0.00f);
+	this->vertices.emplace_back(-0.25f, 0.50f, 0.00f);
 
 	this->textures.emplace_back(0.50f, 0.50f);
 	this->textures.emplace_back(1.00f, 1.00f);
@@ -73,9 +69,9 @@ HexagonPlane::HexagonPlane(ShaderObject* shaderProgram)
 	this->indices.emplace_back(12, 13, 14);
 
 
-	this->vertices.emplace_back(0.00f, 0.00f, 1.00f);
-	this->vertices.emplace_back(0.25f, 0.50f, 1.00f);
-	this->vertices.emplace_back(0.50f, 0.00f, 1.00f);
+	this->vertices.emplace_back(0.00f, 0.00f, 0.00f);
+	this->vertices.emplace_back(0.25f, 0.50f, 0.00f);
+	this->vertices.emplace_back(0.50f, 0.00f, 0.00f);
 
 	this->textures.emplace_back(0.50f, 0.50f);
 	this->textures.emplace_back(1.00f, 1.00f);

@@ -4,6 +4,12 @@
 class Texture
 {
 public:
+	enum class Mode 
+	{
+		Single,
+		Mipmapped
+	};
+public:
 
 	Texture() = delete;
 	Texture(const Texture&) = delete;
@@ -11,7 +17,7 @@ public:
 	Texture& operator=(const Texture&) = delete;
 	Texture& operator=(Texture&&) = delete;
 
-	Texture(const char* file);
+	Texture(const char* file, Mode mode);
 
 	~Texture() = default;
 
@@ -22,6 +28,7 @@ private:
 	int datasize;
 	int width;
 	int height;
+	Mode mode;
 
 };
 #endif // !TEXTURE_H

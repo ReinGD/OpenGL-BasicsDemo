@@ -77,10 +77,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>SOLUTION_DIR=R"($(SolutionDir))";WIN32;_DEBUG;_GLFW_WIN32;_GLFW_USE_CONFIG_H;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb-master;$(SolutionDir)Libraries\File\include;$(SolutionDir)Libraries\GDUtils\include;$(SolutionDir)Libraries\glad\src;$(SolutionDIr)Libraries\glad\include;$(SolutionDir)Libraries\glm-master\glm;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm-master;$(SolutionDir)Libraries\Math\include;$(SolutionDir)Libraries\gli-master\gli;$(SolutionDir)Libraries\stb-master;$(SolutionDir)Libraries\File\include;$(SolutionDir)Libraries\GDUtils\include;$(SolutionDir)Libraries\glad\src;$(SolutionDIr)Libraries\glad\include;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>Framework.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -174,11 +174,16 @@
     <ProjectReference Include="..\Libraries\GDUtils\GDUtils.vcxproj">
       <Project>{d8a28f6f-a740-427e-9e20-7afb436d51f6}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Libraries\Math\PA2.vcxproj">
+      <Project>{ed602e5d-031c-4af8-b6a6-4b34e0073b27}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="ModelArchitecture.cd" />
-    <None Include="texture.fs.glsl" />
-    <None Include="texture.vs.glsl" />
+    <None Include="positioned_texture.fs.glsl" />
+    <None Include="positioned_texture.vs.glsl" />
+    <None Include="simple_texture.fs.glsl" />
+    <None Include="simple_texture.vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

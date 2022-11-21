@@ -9,6 +9,7 @@ public:
 
 	unsigned int getProgram() const;
 	void SetActive() const;
+	int GetUniformLocation(const char* const uniformName) const;
 
 private:
 	unsigned int _vertexShader;

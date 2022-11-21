@@ -29,6 +29,9 @@
     <Filter Include="Source Files\Textures">
       <UniqueIdentifier>{e04d511d-9242-4471-8345-fb0706ee4b4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{9f7944ee-fb83-42df-8fc9-51bc10b6ac7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,10 +104,16 @@
     <None Include="ModelArchitecture.cd">
       <Filter>Source Files\Diagrams</Filter>
     </None>
-    <None Include="texture.fs.glsl">
+    <None Include="simple_texture.fs.glsl">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="texture.vs.glsl">
+    <None Include="simple_texture.vs.glsl">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="positioned_texture.fs.glsl">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="positioned_texture.vs.glsl">
       <Filter>Source Files\Shaders</Filter>
     </None>
   </ItemGroup>
