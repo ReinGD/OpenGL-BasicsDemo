@@ -1,6 +1,7 @@
 #include "GraphicsObject_Texture.h"
 
 #include "MathEngine.h"
+
 using namespace GD;
 
 float delta = 2.0f;
@@ -50,9 +51,11 @@ void GraphicsObject_Texture::SetDataGPU()
 	}
 
 	Matrix view(Matrix::Trans::XYZ, 0.0f, 0.0f, -delta);
+
 	Matrix rotX(Matrix::Rot1::X, rot);
 	Matrix rotY(Matrix::Rot1::Y, rot);
 	Matrix rotZ(Matrix::Rot1::Z, rot);
+
 	Matrix world(Matrix::Special::Identity);
 
 	

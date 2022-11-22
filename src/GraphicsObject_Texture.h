@@ -3,6 +3,8 @@
 
 #include "GraphicsObject.h"
 
+//TO BE USED WITH positioned_texture SHADER
+
 class GraphicsObject_Texture : public GraphicsObject 
 {
 public:

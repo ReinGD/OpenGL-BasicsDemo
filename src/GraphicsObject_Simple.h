@@ -3,7 +3,7 @@
 
 #include "GraphicsObject.h"
 
-//Simple Color Render
+//TO BE USED WITH simple_texture SHADER
 
 class GraphicsObject_Simple : public GraphicsObject
 {
