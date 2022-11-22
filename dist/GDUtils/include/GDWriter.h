@@ -11,7 +11,7 @@
 class GDWriter
 {
 public:
-	enum Mode : uint8_t
+	enum Mode : unsigned char
 	{
 		Unset = 0000,
 		Output = 0001,

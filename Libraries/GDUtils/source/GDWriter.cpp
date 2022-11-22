@@ -24,6 +24,7 @@ void GDWriter::write(const char* const fmt, ...)
 		#pragma warning( pop )
 
 
+				//need to modify this  
 				if (writer.mode == Mode::OutConsole)
 				{
 					vprintf(fmt, args);

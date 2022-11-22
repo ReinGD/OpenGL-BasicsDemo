@@ -12,7 +12,7 @@
 
 
 SimpleGame::SimpleGame()
-	: _vsync(false), window(nullptr), windowWidth(800), windowHeight(800)
+	: _vsync(false), window(nullptr), windowWidth(1200), windowHeight(800)
 {
 	
 }
@@ -27,7 +27,7 @@ void SimpleGame::InitializeOpenGL()
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
 
 
-	//create window 800x800
+	//create window 1200x800
 	window = glfwCreateWindow(windowWidth, windowHeight, "OpenGL Demo", NULL, NULL);
 	if (!window)
 	{
