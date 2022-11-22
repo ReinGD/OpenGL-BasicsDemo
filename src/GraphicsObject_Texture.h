@@ -8,7 +8,7 @@
 class GraphicsObject_Texture : public GraphicsObject 
 {
 public:
-	GraphicsObject_Texture(const Mesh* mesh, const Texture* texture, const ShaderObject* shader);
+	GraphicsObject_Texture(const Model* mesh, const Texture* texture, const ShaderObject* shader);
 	~GraphicsObject_Texture();
 
 	GraphicsObject_Texture() = delete;

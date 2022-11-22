@@ -4,10 +4,10 @@
 #include "MeshProperties.h"
 #include <cassert>
 
-#define glCheckError() glCheckError_(__FILE__, __LINE__) 
+#include "VBOData.h"
+typedef VBOData EBOData;
 
-//this will be part of manager dlinks
-class Mesh //: public DLink
+class Mesh 
 {
 public:
 	Mesh();
@@ -16,11 +16,8 @@ public:
 	Mesh& operator= (const Mesh&) = delete;
 	Mesh& operator= (Mesh&&) = delete;
 	virtual ~Mesh();
-
-protected: 
-	virtual void GenerateBuffers() = 0;
-	virtual void BindBufferData() = 0;
-	virtual void SetVertexAttributes() = 0;
+ 
+	void GenerateBuffers();
 
 	void Wash();
 	//Data
@@ -31,11 +28,11 @@ public:
 public:
 
 	unsigned int VAO;
-	unsigned int VBO_Verts; //position
-	unsigned int VBO_Texts; //uv
-	unsigned int VBO_Norms; //normals
-	unsigned int VBO_Color; //color
-	unsigned int EBO;		//indices (trilist)
+	VBOData VBO_Verts; //position
+	VBOData VBO_Texts; //uv
+	VBOData VBO_Norms; //normals
+	VBOData VBO_Color; //color
+	EBOData EBO;	   //indices (trilist)
 
 
 };

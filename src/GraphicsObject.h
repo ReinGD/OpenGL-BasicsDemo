@@ -4,7 +4,7 @@
 #include "RenderMaterial.h"
 #include "ShaderObject.h"
 #include "Texture.h"
-#include "Mesh.h"
+#include "Model.h"
 
 class GraphicsObject : public RenderMaterial
 {
@@ -15,7 +15,7 @@ public:
 	GraphicsObject& operator= (const GraphicsObject) = delete;
 	GraphicsObject& operator= (GraphicsObject&&) = delete;
 
-	GraphicsObject(const Mesh* mesh, const ShaderObject* shader);
+	GraphicsObject(const Model* model, const ShaderObject* shader);
 	virtual ~GraphicsObject();
 
 	void Render();

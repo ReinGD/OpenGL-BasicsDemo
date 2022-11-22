@@ -1,9 +1,9 @@
 #include "GraphicsObject_Simple.h"
 
-GraphicsObject_Simple::GraphicsObject_Simple(const Mesh* mesh, const ShaderObject* shader)
-	:GraphicsObject(mesh, shader)
+GraphicsObject_Simple::GraphicsObject_Simple(const Model* model, const ShaderObject* shader)
+	:GraphicsObject(model, shader)
 {
-	assert(mesh);
+	assert(model);
 	assert(shader);
 }
 
@@ -19,13 +19,13 @@ void GraphicsObject_Simple::SetState()
 
 void GraphicsObject_Simple::SetDataGPU()
 {
-	glBindVertexArray(this->GetMesh().VAO);
+	glBindVertexArray(this->pMesh->VAO);
 	this->pShaderObject->SetActive();
 }
 
 void GraphicsObject_Simple::Draw()
 {
-	glDrawElements(GL_TRIANGLES, 3 * this->GetMesh().numTriangles, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 3 * this->pMesh->numTriangles, GL_UNSIGNED_INT, 0);
 }
 
 void GraphicsObject_Simple::RestoreState()

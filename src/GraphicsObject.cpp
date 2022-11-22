@@ -1,9 +1,10 @@
 #include "GraphicsObject.h"
 #include <cassert>
 
-GraphicsObject::GraphicsObject(const Mesh* mesh, const ShaderObject* shader)
-	:pMesh(mesh), pShaderObject(shader)
+GraphicsObject::GraphicsObject(const Model* model, const ShaderObject* shader)
+	:pShaderObject(shader)
 {
+	pMesh = model->AttachedMesh();
 	assert(pMesh);
 	assert(pShaderObject);
 

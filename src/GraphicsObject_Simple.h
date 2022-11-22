@@ -8,7 +8,7 @@
 class GraphicsObject_Simple : public GraphicsObject
 {
 public:
-	GraphicsObject_Simple(const Mesh* mesh, const ShaderObject* shader);
+	GraphicsObject_Simple(const Model* model, const ShaderObject* shader);
 	~GraphicsObject_Simple();
 
 	GraphicsObject_Simple() = delete;

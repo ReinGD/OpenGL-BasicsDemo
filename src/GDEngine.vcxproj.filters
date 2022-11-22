@@ -32,6 +32,18 @@
     <Filter Include="Source Files\Camera">
       <UniqueIdentifier>{9f7944ee-fb83-42df-8fc9-51bc10b6ac7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{3f9fab8f-1384-499c-a614-2ed7ccc84b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{2283c41b-5fb1-46ec-9bb7-b8df5f128831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Mesh">
+      <UniqueIdentifier>{701d9f25-d368-40c5-96cd-0ac3d58bdd4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Mesh\Components">
+      <UniqueIdentifier>{c966c4f1-0c90-4a26-89ec-e69a0556d518}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,9 +64,6 @@
     <ClCompile Include="GraphicsObject_Simple.cpp">
       <Filter>Source Files\Graphic Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderObject.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
@@ -67,12 +76,18 @@
     <ClCompile Include="Cube.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Model\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="VBOData.cpp">
+      <Filter>Source Files\Model\Mesh\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HexagonPlane.h">
-      <Filter>Source Files\Game Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshProperties.h">
       <Filter>Source Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="SimpleGame.h">
@@ -80,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="ShaderObject.h">
       <Filter>Source Files\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenGL_Helper.h">
-      <Filter>OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsObject_Simple.h">
       <Filter>Source Files\Graphic Objects</Filter>
@@ -93,9 +105,6 @@
     <ClInclude Include="RenderMaterial.h">
       <Filter>Source Files\Graphic Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Source Files\Game Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Source Files\Textures</Filter>
     </ClInclude>
@@ -104,6 +113,21 @@
     </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>Source Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Helper.h">
+      <Filter>Source Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshProperties.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Model\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="VBOData.h">
+      <Filter>Source Files\Model\Mesh\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

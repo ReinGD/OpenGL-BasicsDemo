@@ -2,18 +2,13 @@
 #define HEXAGON_PLANE_H
 
 #include <vector>
-#include "Mesh.h"
+#include "Model.h"
 
-class HexagonPlane : public Mesh
+class HexagonPlane : public Model
 {
 public:
 	HexagonPlane();
 	~HexagonPlane() = default;
-
-protected:
-	virtual void GenerateBuffers() override;
-	virtual void BindBufferData() override;
-	virtual void SetVertexAttributes() override;
 
 private:
 	//VBOS

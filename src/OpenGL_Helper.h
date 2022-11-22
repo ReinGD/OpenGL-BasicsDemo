@@ -27,5 +27,7 @@ static GLenum glCheckError_(const char* file, int line) {
 	return errorCode;
 }
 
+#define glCheckError() glCheckError_(__FILE__, __LINE__) 
+
 
 #endif // !OPEN_GL_HELPER_H

@@ -3,12 +3,12 @@
 
 Cube::Cube()
 {
-	this->numTriangles = 12;
-	this->numVerts = 24;
+	this->meshData->numTriangles = 12;
+	this->meshData->numVerts = 24;
 
-	this->vertices.reserve(this->numVerts);
-	this->textures.reserve(this->numVerts);
-	this->indices.reserve(this->numTriangles);
+	this->vertices.reserve(this->meshData->numVerts);
+	this->textures.reserve(this->meshData->numVerts);
+	this->indices.reserve(this->meshData->numTriangles);
 
 	auto positionNearTopLeft  = MeshProperties::position(-1.0f, -1.0f,  1.0f);
 	auto positionNearTopRight = MeshProperties::position( 1.0f, -1.0f,  1.0f);
@@ -104,48 +104,17 @@ Cube::Cube()
 	this->indices.emplace_back(20, 21, 22);
 	this->indices.emplace_back(22, 23, 20);
 
-	GenerateBuffers();
-	BindBufferData();
-	SetVertexAttributes();
+
+	//this generates the vbos/ebo
+	auto vertexSize = this->vertices.size() * sizeof(MeshProperties::position);
+	this->meshData->VBO_Verts = VBOData(true, this->vertices.size(),0, vertexSize, sizeof(MeshProperties::position), this->vertices.data());
+
+	auto textureSize = this->textures.size() * sizeof(MeshProperties::textureUV);
+	this->meshData->VBO_Texts = VBOData(true, this->textures.size(),1, textureSize, sizeof(MeshProperties::textureUV) ,this->textures.data());
+
+	auto indexSize = this->indices.size() * sizeof(MeshProperties::index);
+	this->meshData->EBO = VBOData(true, this->indices.size(),0, indexSize, sizeof(MeshProperties::index), this->indices.data());
+
+	GenerateVBOs();
 }
 
-void Cube::GenerateBuffers()
-{
-	glGenVertexArrays(1, &this->VAO);
-	glGenBuffers(1, &this->VBO_Verts);
-	glGenBuffers(1, &this->VBO_Texts);
-	glGenBuffers(1, &this->EBO);
-}
-
-void Cube::BindBufferData()
-{
-	glBindVertexArray(this->VAO);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-
-	auto indexSize = indices.size() * sizeof(MeshProperties::index);
-
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, indices.data(), GL_STATIC_DRAW);
-
-	glCheckError();
-}
-
-void Cube::SetVertexAttributes()
-{
-	glBindBuffer(GL_ARRAY_BUFFER, this->VBO_Verts);
-	auto vertexSize = vertices.size() * sizeof(MeshProperties::position);
-	glBufferData(GL_ARRAY_BUFFER, vertexSize, vertices.data(), GL_STATIC_DRAW);
-	glCheckError();
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::position), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, this->VBO_Texts);
-	auto textSize = textures.size() * sizeof(MeshProperties::textureUV);
-	glBufferData(GL_ARRAY_BUFFER, textSize, textures.data(), GL_STATIC_DRAW);
-	glCheckError();
-
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::textureUV), (void*)0);
-	glEnableVertexAttribArray(1);
-
-}

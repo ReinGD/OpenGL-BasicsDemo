@@ -8,8 +8,8 @@ float delta = 2.0f;
 float increment = 0.0125f;
 float rot = 0.50f;
 
-GraphicsObject_Texture::GraphicsObject_Texture(const Mesh* mesh, const Texture* texture, const ShaderObject* shader)
-	:GraphicsObject(mesh, shader), pTexture(texture)
+GraphicsObject_Texture::GraphicsObject_Texture(const Model* model, const Texture* texture, const ShaderObject* shader)
+	:GraphicsObject(model, shader), pTexture(texture)
 {
 	assert(pTexture);
 }

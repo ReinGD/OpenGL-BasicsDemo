@@ -2,15 +2,17 @@
 #include "OpenGL_Helper.h"
 HexagonPlane::HexagonPlane()
 {
+	/*
+		THIS WHOLE DATA SECTION WILL EVENTUALLY BE PART OF A SERIALIZATION/DESERIALIZATION PROCESS
+		FOR NOW IT IS UPLOADED MANUALLY BUT THIS SHOULD COME FROM FILE
+	*/
 
+	this->meshData->numTriangles = 6;
+	this->meshData->numVerts = 18;
 
-	this->numTriangles = 6;
-	this->numVerts = 18;
-
-
-	this->vertices.reserve(this->numVerts);
-	this->textures.reserve(this->numVerts);
-	this->indices.reserve(this->numTriangles);
+	this->vertices.reserve(this->meshData->numVerts);
+	this->textures.reserve(this->meshData->numVerts);
+	this->indices.reserve(this->meshData->numTriangles);
 
 	//each triangle will have a different texture coordinate
 	//each triangle is separate on purpose to show texture 
@@ -78,55 +80,16 @@ HexagonPlane::HexagonPlane()
 
 	this->indices.emplace_back(15, 16, 17);
 
-	GenerateBuffers();
-	BindBufferData();
-	SetVertexAttributes();
+	//this generates the vbos/ebo
+	auto vertexSize = this->vertices.size() * sizeof(MeshProperties::position);
+	this->meshData->VBO_Verts = VBOData(true, this->vertices.size(),0, vertexSize, sizeof(MeshProperties::position), this->vertices.data());
 
+	auto textureSize = this->textures.size() * sizeof(MeshProperties::textureUV);
+	this->meshData->VBO_Texts = VBOData(true, this->textures.size(),1, textureSize, sizeof(MeshProperties::textureUV), this->textures.data());
+
+	auto indexSize = this->indices.size() * sizeof(MeshProperties::index);
+	this->meshData->EBO = VBOData(true, this->indices.size(),0, indexSize, sizeof(MeshProperties::index), this->indices.data());
+
+	GenerateVBOs();
 }
 
-void HexagonPlane::GenerateBuffers()
-{
-	//generate the vertex array object
-	glGenVertexArrays(1, &this->VAO);
-	//generate an open gl buffer to store vertex data
-	glGenBuffers(1, &this->VBO_Verts);
-	//generate an open gl buffer to store texture data
-	glGenBuffers(1, &this->VBO_Texts);
-	//generate an open gl buffer to store index data
-	glGenBuffers(1, &this->EBO);
-}
-
-void HexagonPlane::BindBufferData()
-{
-	//bind it
-	glBindVertexArray(this->VAO);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	auto indexSize = indices.size() * sizeof(MeshProperties::index);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, indices.data(), GL_STATIC_DRAW);
-	glCheckError();
-
-}
-
-void HexagonPlane::SetVertexAttributes()
-{
-
-	//with the buffer bound we set the attribute to describe how the vertex is layed out
-	//this sets the data to the opengl buffers generated earlier
-	glBindBuffer(GL_ARRAY_BUFFER, this->VBO_Verts);
-	auto vertexSize = vertices.size() * sizeof(MeshProperties::position);
-	glBufferData(GL_ARRAY_BUFFER, vertexSize, vertices.data(), GL_STATIC_DRAW);
-	glCheckError();
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::position), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, this->VBO_Texts);
-	auto textSize = textures.size() * sizeof(MeshProperties::textureUV);
-	glBufferData(GL_ARRAY_BUFFER, textSize, textures.data(), GL_STATIC_DRAW);
-	glCheckError();
-
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(MeshProperties::textureUV), (void*)0);
-	glEnableVertexAttribArray(1);
-
-}

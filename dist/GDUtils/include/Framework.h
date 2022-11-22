@@ -2,6 +2,9 @@
 #ifndef FRAMEWORK_H
 #define FRAMEWORK_H
 
+#include <stdlib.h>  
+#include <crtdbg.h>  
+
 /*
 	This memory tracker should be enabled only on debug,
 	release should not be affected
@@ -24,8 +27,6 @@
 
 #if defined(_DEBUG) && defined(GD_MEM_TRACKER_ENABLED)
 	#define _CRTDBG_MAP_ALLOC   
-	#include <stdlib.h>  
-	#include <crtdbg.h>  
 	#define new new( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 
 #else

@@ -5,12 +5,11 @@
 
 GDMemTracker::GDMemTracker() noexcept
 {
+
 }
 
 void GDMemTracker::Initialize() noexcept
 {
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
 	GDMemTracker& tracker = GDMemTracker::privGetRef();
 
 	std::call_once(tracker.processBeginFlag, [&tracker]() noexcept

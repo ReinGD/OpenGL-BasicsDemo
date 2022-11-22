@@ -51,7 +51,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -75,6 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_X86$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -119,22 +120,26 @@ copy "$(ProjectDir)include\*.h" "$(SolutionDir)dist\Math\include\."</Command>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;ENDO;NDEBUG;_CONSOLE;MAYO;WINDOWS_TARGET_PLATFORM="$(TargetPlatformVersion)";SOLUTION_DIR=R"($(SolutionDir))";TOOLS_VERSION=R"($(VCToolsVersion))";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>
+      </SDLCheck>
+      <PreprocessorDefinitions>SOLUTION_DIR=R"($(SolutionDir))";WIN32;ENDO;NDEBUG;_CONSOLE;MAYO;WINDOWS_TARGET_PLATFORM="$(TargetPlatformVersion)";SOLUTION_DIR=R"($(SolutionDir))";TOOLS_VERSION=R"($(VCToolsVersion))";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Framework;$(SolutionDir)Test;$(SolutionDir)PA2;$(SolutionDir)PA2_ReadOnly</AdditionalIncludeDirectories>
-      <WarningVersion>19.27.29111</WarningVersion>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GDUtils\include;$(ProjectDir)include</AdditionalIncludeDirectories>
+      <WarningVersion>
+      </WarningVersion>
       <PrecompiledHeaderOutputFile />
       <ForcedIncludeFiles>Framework.h</ForcedIncludeFiles>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>
       </DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -11,8 +11,8 @@ class FileHelper
 {
 public:
 	~FileHelper() = default;
-	static std::vector<char> FileOpenV(const char* const fileName, GD::File::Mode openMode, GD::File::Error* out_status);
-	static std::string FileOpenS(const char* const fileName, GD::File::Mode openMode, GD::File::Error* out_status);
+	static std::vector<char> FileOpenV(const char* const fileName);
+	static std::string FileOpenS(const char* const fileName);
 private:
 	FileHelper() = default;
 };

@@ -2,18 +2,13 @@
 #define CUBE_H
 
 #include <vector>
-#include "Mesh.h"
+#include "Model.h"
 
-class Cube : public Mesh
+class Cube : public Model
 {
 public:
 	Cube();
 	~Cube() = default;
-
-protected:
-	virtual void GenerateBuffers() override;
-	virtual void BindBufferData() override;
-	virtual void SetVertexAttributes() override;
 
 private:
 	//VBOS

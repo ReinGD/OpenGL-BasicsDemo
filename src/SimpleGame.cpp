@@ -87,12 +87,8 @@ void SimpleGame::TerminateOpenGL()
 
 void SimpleGame::run()
 {
-	//need to eliminate double output TODO
-	GD::File::Error error;
-	std::string vertexShader = FileHelper::FileOpenS("positioned_texture.vs.glsl", GD::File::Mode::READ, &error);
-	assert(error == GD::File::Error::SUCCESS);
-	std::string fragmentShader = FileHelper::FileOpenS("positioned_texture.fs.glsl", GD::File::Mode::READ, &error);
-	assert(error == GD::File::Error::SUCCESS);
+	std::string vertexShader = FileHelper::FileOpenS("positioned_texture.vs.glsl");
+	std::string fragmentShader = FileHelper::FileOpenS("positioned_texture.fs.glsl");
 
 	//shader program
 	ShaderObject* shaderProgram = new ShaderObject(vertexShader.c_str(), fragmentShader.c_str());

@@ -38,7 +38,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -72,7 +72,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <TargetName>$(ProjectName)_X86$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>$(ProjectName)_X86$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,17 +104,21 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SOLUTION_DIR=R"($(SolutionDir))";WIN32;NDEBUG;_GLFW_WIN32;_GLFW_USE_CONFIG_H;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm-master\glm;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm-master;$(SolutionDir)Libraries\Math\include;$(SolutionDir)Libraries\gli-master\gli;$(SolutionDir)Libraries\stb-master;$(SolutionDir)Libraries\File\include;$(SolutionDir)Libraries\GDUtils\include;$(SolutionDir)Libraries\glad\src;$(SolutionDIr)Libraries\glad\include;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>Framework.h</ForcedIncludeFiles>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\glad\src;$(SolutionDir)Libraries\glfw-3.3.8.bin.WIN32\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,9 +158,11 @@
     <ClCompile Include="HexagonPlane.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ShaderObject.cpp" />
     <ClCompile Include="SimpleGame.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="VBOData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
@@ -163,11 +172,13 @@
     <ClInclude Include="HexagonPlane.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshProperties.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="OpenGL_Helper.h" />
     <ClInclude Include="RenderMaterial.h" />
     <ClInclude Include="ShaderObject.h" />
     <ClInclude Include="SimpleGame.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="VBOData.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libraries\File\File.vcxproj">
