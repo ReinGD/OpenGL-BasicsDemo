@@ -24,7 +24,7 @@
     <ProjectGuid>{a74ec714-2dd7-483e-bbf6-5ce0c065e55d}</ProjectGuid>
     <RootNamespace>src</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>OpenGL_Demo</ProjectName>
+    <ProjectName>GDEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Libraries\glad\src\glad.c" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="GraphicsObject.cpp" />
     <ClCompile Include="GraphicsObject_Simple.cpp" />
     <ClCompile Include="GraphicsObject_Texture.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="GraphicsObject.h" />
     <ClInclude Include="GraphicsObject_Simple.h" />
     <ClInclude Include="GraphicsObject_Texture.h" />
@@ -174,7 +176,7 @@
     <ProjectReference Include="..\Libraries\GDUtils\GDUtils.vcxproj">
       <Project>{d8a28f6f-a740-427e-9e20-7afb436d51f6}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\Math\PA2.vcxproj">
+    <ProjectReference Include="..\Libraries\Math\Math.vcxproj">
       <Project>{ed602e5d-031c-4af8-b6a6-4b34e0073b27}</Project>
     </ProjectReference>
   </ItemGroup>

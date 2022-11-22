@@ -1,6 +1,5 @@
 #include "HexagonPlane.h"
 #include "OpenGL_Helper.h"
-
 HexagonPlane::HexagonPlane()
 {
 

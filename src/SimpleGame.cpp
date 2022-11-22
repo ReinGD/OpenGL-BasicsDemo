@@ -6,6 +6,7 @@
 #include "GraphicsObject_Simple.h"
 #include "GraphicsObject_Texture.h"
 #include "FileHelper.h"
+#include "Cube.h"
 
 #define UNUSED_VAR(x) (void(x))
 
@@ -97,7 +98,7 @@ void SimpleGame::run()
 	ShaderObject* shaderProgram = new ShaderObject(vertexShader.c_str(), fragmentShader.c_str());
 
 	//this already sets the vbo 
-	HexagonPlane* model = new HexagonPlane();
+	Cube* model = new Cube();
 
 	//set up the texture
 	Texture* texture = new Texture("wall.dds", Texture::Mode::Mipmapped);

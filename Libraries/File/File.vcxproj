@@ -27,7 +27,8 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{67E2FF08-C99E-4C86-A07A-1B89C13E6FA6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PA3</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>File</ProjectName>
   </PropertyGroup>

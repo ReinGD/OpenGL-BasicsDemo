@@ -3,8 +3,9 @@
 #include "MathEngine.h"
 using namespace GD;
 
-float delta = 1.0f;
+float delta = 2.0f;
 float increment = 0.0125f;
+float rot = 0.50f;
 
 GraphicsObject_Texture::GraphicsObject_Texture(const Mesh* mesh, const Texture* texture, const ShaderObject* shader)
 	:GraphicsObject(mesh, shader), pTexture(texture)
@@ -39,18 +40,23 @@ void GraphicsObject_Texture::SetDataGPU()
 	proj[m13] = 0.00000000f;
 	proj[m14] = - 0.200020000f;
 
-	if (delta > 6)
+	if (delta > 16)
 	{
 		increment = -0.0125f;
 	}
-	else if (delta < 1)
+	else if (delta < 2)
 	{
 		increment = 0.0125f;
 	}
 
 	Matrix view(Matrix::Trans::XYZ, 0.0f, 0.0f, -delta);
+	Matrix rotX(Matrix::Rot1::X, rot);
+	Matrix rotY(Matrix::Rot1::Y, rot);
+	Matrix rotZ(Matrix::Rot1::Z, rot);
 	Matrix world(Matrix::Special::Identity);
 
+	
+	world *= rotX * rotY * rotZ;
 	delta += increment;
 
 	glUniformMatrix4fv(this->pShaderObject->GetUniformLocation("proj_matrix"), 1, GL_FALSE, (float*)&proj);

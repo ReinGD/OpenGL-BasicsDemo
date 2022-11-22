@@ -1,30 +1,31 @@
-#include <glad/glad.h>
 #ifndef OPEN_GL_HELPER_H
 #define OPEN_GL_HELPER_H
 
-	static GLenum glCheckError_(const char* file, int line) {
-		GLenum errorCode;
-		while ((errorCode = glGetError()) != GL_NO_ERROR)
+#include <glad/glad.h>
+
+static GLenum glCheckError_(const char* file, int line) {
+	GLenum errorCode;
+	while ((errorCode = glGetError()) != GL_NO_ERROR)
+	{
+		std::string error;
+		switch (errorCode)
 		{
-			std::string error;
-			switch (errorCode)
-			{
-			case GL_INVALID_ENUM:                  error = "INVALID_ENUM"; break;
-			case GL_INVALID_VALUE:                 error = "INVALID_VALUE"; break;
-			case GL_INVALID_OPERATION:             error = "INVALID_OPERATION"; break;
-			case GL_STACK_OVERFLOW:                error = "STACK_OVERFLOW"; break;
-			case GL_STACK_UNDERFLOW:               error = "STACK_UNDERFLOW"; break;
-			case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
-			case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
-			}
-			GDWriter::write(error.c_str());
-			GDWriter::write(" | ");
-			GDWriter::write(file);
-			GDWriter::write(" (");
-			GDWriter::write("({0})\n",line);
+		case GL_INVALID_ENUM:                  error = "INVALID_ENUM"; break;
+		case GL_INVALID_VALUE:                 error = "INVALID_VALUE"; break;
+		case GL_INVALID_OPERATION:             error = "INVALID_OPERATION"; break;
+		case GL_STACK_OVERFLOW:                error = "STACK_OVERFLOW"; break;
+		case GL_STACK_UNDERFLOW:               error = "STACK_UNDERFLOW"; break;
+		case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
+		case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
 		}
-		return errorCode;
+		GDWriter::write(error.c_str());
+		GDWriter::write(" | ");
+		GDWriter::write(file);
+		GDWriter::write(" (");
+		GDWriter::write("({0})\n",line);
 	}
+	return errorCode;
+}
 
 
 #endif // !OPEN_GL_HELPER_H

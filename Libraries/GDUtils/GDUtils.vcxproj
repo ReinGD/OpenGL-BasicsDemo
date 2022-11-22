@@ -31,7 +31,8 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{d8a28f6f-a740-427e-9e20-7afb436d51f6}</ProjectGuid>
-    <RootNamespace>src</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>GDUtils</ProjectName>
   </PropertyGroup>

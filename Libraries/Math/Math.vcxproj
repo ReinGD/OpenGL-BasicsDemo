@@ -38,7 +38,8 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{ED602E5D-031C-4AF8-B6A6-4B34E0073B27}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Basics1</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Math</ProjectName>
   </PropertyGroup>

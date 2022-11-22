@@ -1,14 +1,14 @@
-#ifndef HEXAGON_PLANE_H
-#define HEXAGON_PLANE_H
+#ifndef CUBE_H
+#define CUBE_H
 
 #include <vector>
 #include "Mesh.h"
 
-class HexagonPlane : public Mesh
+class Cube : public Mesh
 {
 public:
-	HexagonPlane();
-	~HexagonPlane() = default;
+	Cube();
+	~Cube() = default;
 
 protected:
 	virtual void GenerateBuffers() override;
@@ -19,10 +19,10 @@ private:
 	//VBOS
 	std::vector<MeshProperties::position> vertices;
 	std::vector<MeshProperties::textureUV> textures;
-	
+
 	//EBO
 	std::vector<MeshProperties::index> indices;
 
 };
 
-#endif // !HEXAGON_PLANE_H
+#endif // !CUBE_H
