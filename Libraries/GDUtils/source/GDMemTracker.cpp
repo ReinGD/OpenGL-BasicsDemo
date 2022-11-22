@@ -144,12 +144,12 @@ void GDMemTracker::Terminate() noexcept
 
 			GDWriter::write("------------------------------------------------------\n");
 			if (appCount)
-			{
-				GDWriter::write(">>>>>> Memory Tracking: FAIL <<<<<<\n");
+			{  
+			GDWriter::write("         >>>>>> Memory Tracking: FAIL <<<<<<         \n");
 			}
 			else
 			{
-				GDWriter::write("                Memory Tracking: PASS \n");
+			GDWriter::write("                Memory Tracking: PASS                 \n");
 			}
 			GDWriter::write("------------------------------------------------------\n");
 			GDWriter::write("                Memory Tracking: Finished             \n");

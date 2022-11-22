@@ -156,6 +156,14 @@
     <ClCompile Include="GraphicsObject_Simple.cpp" />
     <ClCompile Include="GraphicsObject_Texture.cpp" />
     <ClCompile Include="HexagonPlane.cpp" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="GD_ImGui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_glfw.cpp" />
+    <ClCompile Include="imgui_impl_opengl3.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -170,6 +178,15 @@
     <ClInclude Include="GraphicsObject_Simple.h" />
     <ClInclude Include="GraphicsObject_Texture.h" />
     <ClInclude Include="HexagonPlane.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="GD_ImGui.h" />
+    <ClInclude Include="imgui_impl_glfw.h" />
+    <ClInclude Include="imgui_impl_opengl3.h" />
+    <ClInclude Include="imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshProperties.h" />
     <ClInclude Include="Model.h" />
@@ -192,6 +209,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="imgui.ini" />
     <None Include="ModelArchitecture.cd" />
     <None Include="positioned_texture.fs.glsl" />
     <None Include="positioned_texture.vs.glsl" />

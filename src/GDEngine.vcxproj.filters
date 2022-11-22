@@ -44,6 +44,18 @@
     <Filter Include="Source Files\Model\Mesh\Components">
       <UniqueIdentifier>{c966c4f1-0c90-4a26-89ec-e69a0556d518}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ImGui">
+      <UniqueIdentifier>{ba50e002-b68a-4cd0-b7f5-d6c1b3530134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ImGui\Renderer">
+      <UniqueIdentifier>{d43a1be4-cda0-41c7-b602-4602b950b114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ImGui\Files">
+      <UniqueIdentifier>{293490b6-98d6-40cf-a743-58e5772a486a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ImGui\Helper">
+      <UniqueIdentifier>{abd9144c-a680-4094-9687-528bf40912a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +96,30 @@
     </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_glfw.cpp">
+      <Filter>Source Files\ImGui\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_opengl3.cpp">
+      <Filter>Source Files\ImGui\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="GD_ImGui.cpp">
+      <Filter>Source Files\ImGui\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +165,33 @@
     <ClInclude Include="VBOData.h">
       <Filter>Source Files\Model\Mesh\Components</Filter>
     </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>Source Files\ImGui\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_glfw.h">
+      <Filter>Source Files\ImGui\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_opengl3.h">
+      <Filter>Source Files\ImGui\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_opengl3_loader.h">
+      <Filter>Source Files\ImGui\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="GD_ImGui.h">
+      <Filter>Source Files\ImGui\Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ModelArchitecture.cd">
@@ -145,6 +208,9 @@
     </None>
     <None Include="positioned_texture.vs.glsl">
       <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="imgui.ini">
+      <Filter>Source Files\ImGui\Files</Filter>
     </None>
   </ItemGroup>
 </Project>

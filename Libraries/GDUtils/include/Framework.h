@@ -52,8 +52,11 @@
 	
 #endif // GD_MEM_TRACKER_ENABLED 
 
+#define CLEAN_NEW_BEGIN	__pragma(push_macro("new"))
 
+#define CLEAN_NEW_END __pragma(pop_macro("new"))
 
+#define UNUSED_VAR(x) (void(x))
 
 static struct _StaticMem
 {

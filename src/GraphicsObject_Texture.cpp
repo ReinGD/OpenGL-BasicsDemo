@@ -18,6 +18,11 @@ GraphicsObject_Texture::~GraphicsObject_Texture()
 {
 }
 
+void GraphicsObject_Texture::SetTexture(const Texture* texture)
+{
+	this->pTexture = texture;
+}
+
 void GraphicsObject_Texture::SetState()
 {
 	glBindTexture(GL_TEXTURE_2D, pTexture->getID());

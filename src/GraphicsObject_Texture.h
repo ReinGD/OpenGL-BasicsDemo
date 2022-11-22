@@ -17,6 +17,8 @@ public:
 	GraphicsObject_Texture& operator=(const GraphicsObject_Texture&) = delete;
 	GraphicsObject_Texture& operator=(GraphicsObject_Texture&&) = delete;
 
+	void SetTexture(const Texture* texture);
+
 protected:
 	//RenderMaterial Contract
 	virtual void SetState() override;

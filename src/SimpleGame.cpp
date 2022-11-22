@@ -8,13 +8,12 @@
 #include "FileHelper.h"
 #include "Cube.h"
 
-#define UNUSED_VAR(x) (void(x))
 
+#include "GD_ImGUI.h"
 
 SimpleGame::SimpleGame()
 	: _vsync(false), window(nullptr), windowWidth(1200), windowHeight(800)
 {
-	
 }
 
 void SimpleGame::InitializeOpenGL()
@@ -77,11 +76,15 @@ void SimpleGame::InitializeOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	
+
+
+	//initialize imgui
+	GD_ImGui::Initialize(window, windowWidth, windowHeight);
 }
 
 void SimpleGame::TerminateOpenGL()
 {
-
+	GD_ImGui::Terminate();
 	glfwTerminate();
 }
 
@@ -97,10 +100,11 @@ void SimpleGame::run()
 	Cube* model = new Cube();
 
 	//set up the texture
-	Texture* texture = new Texture("wall.dds", Texture::Mode::Mipmapped);
+	Texture* textureCustomMipmap = new Texture("wall.dds", Texture::Mode::Mipmapped);
+	Texture* textureRegularMipmap = new Texture("wall.jpg", Texture::Mode::Single);
 
 	//Set up the Graphics Object;
-	GraphicsObject_Texture* gObject = new GraphicsObject_Texture(model, texture, shaderProgram);
+	GraphicsObject_Texture* gObject = new GraphicsObject_Texture(model, textureRegularMipmap, shaderProgram);
 
 
 	/*
@@ -113,24 +117,35 @@ void SimpleGame::run()
 	
 	//the only reason the object changes color is because the mipmaps are of different color
 	//they are being interpolated as the object gets farther away
+	//you can switch the textures by using the UI
+	GD_ImGui::SetObjectToModify(gObject);
+	GD_ImGui::SetTextures(textureRegularMipmap, textureCustomMipmap);
 
 	while (!glfwWindowShouldClose(window))
 	{
 		clearBuffer();
-
-		gObject->Render();
-
-		glfwSwapBuffers(window); //do context switching
 		glfwPollEvents();
+		
+		//update call
+		GD_ImGui::Update();
+
+
+		//draw call
+		gObject->Render();
+		GD_ImGui::Draw();
 
 		
+
+
+		glfwSwapBuffers(window); //do context switching
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
 
 	}
 
 	delete gObject;
-	delete texture;
+	delete textureCustomMipmap;
+	delete textureRegularMipmap;
 	delete model;
 	delete shaderProgram;
 
