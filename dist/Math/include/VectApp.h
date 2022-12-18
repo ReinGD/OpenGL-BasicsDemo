@@ -1,3 +1,8 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #ifndef VectApp_H
 #define VectApp_H
 

@@ -1,3 +1,8 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #ifndef ENGINE_MATH_MATRIX_H
 #define ENGINE_MATH_MATRIX_H
 
@@ -89,6 +94,7 @@ namespace GD
 		Matrix(Rot, Vect, float);
 		Matrix(Orient, Vect DoF, Vect y);
 		Matrix(Vect _iv0, Vect _iv1, Vect _iv2, Vect _iv3);
+		
 		Matrix(const Quat&);
 
 		//Special Sets []
@@ -211,6 +217,9 @@ namespace GD
 		bool isZero();
 		bool isRotation() const;
 
+		//Perspective Matrix
+		static Matrix Perspective(float fov, float aspectRatio, float zNear, float zFar);
+		static Matrix Orthographic(float xLeft, float xRight, float yTop, float yBottom, float zNear, float zFar);
 
 		// For printing
 		friend void Debug::Print(const char *pName, const Matrix &r);

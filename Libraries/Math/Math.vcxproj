@@ -130,6 +130,7 @@ copy "$(ProjectDir)include\*.h" "$(SolutionDir)dist\Math\include\."</Command>
       </DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +143,7 @@ copy "$(ProjectDir)include\*.h" "$(SolutionDir)dist\Math\include\."</Command>
 mkdir "$(SolutionDir)dist\Math\include"
 copy "$(SolutionDir)Release\Math*.lib" "$(SolutionDir)\dist\Math\lib\."
 copy "$(SolutionDir)Release\Math*.pdb" "$(SolutionDir)dist\Math\lib\."
-copy "$(ProjectDir)include\*.h" "$(SolutionDir)dist\Math\include\."</Command>
+copy "$(ProjectDir)include\*.h" "$(SolutionDir)dist\File\include\."</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -150,6 +150,15 @@ copy "$(SolutionDir)dist\Math\lib\*$(Configuration).pdb" "$(SolutionDir)$(Config
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)dist\File\lib\*$(Configuration).lib" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)dist\File\lib\*$(Configuration).pdb" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)dist\GDUtils\lib\*$(Configuration).lib" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)dist\GDUtils\lib\*$(Configuration).pdb" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)dist\Math\lib\*$(Configuration).lib" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)dist\Math\lib\*$(Configuration).pdb" "$(SolutionDir)$(Configuration)"
+</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

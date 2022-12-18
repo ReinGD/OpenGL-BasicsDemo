@@ -1,3 +1,8 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 

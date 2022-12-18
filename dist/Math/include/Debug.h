@@ -1,7 +1,10 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #ifndef ENGINE_MATH_DEBUG_H
 #define ENGINE_MATH_DEBUG_H
-
-// This file assumes Framework.h is included in executable for Trace::Out
 
 namespace GD
 {

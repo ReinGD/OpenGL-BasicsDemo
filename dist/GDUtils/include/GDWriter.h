@@ -1,8 +1,16 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #pragma once
 #include <cstdint>
 #include <mutex>
 #ifndef GD_WRITTER_H
 #define GD_WRITTER_H
+
+
+#define stringEnum(x) #x
 
 
 //BASED ON ED KEENAN'S TRACE 

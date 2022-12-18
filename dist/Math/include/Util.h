@@ -1,3 +1,8 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #ifndef ENGINE_MATH_UTIL_H
 #define ENGINE_MATH_UTIL_H
 

@@ -4,8 +4,8 @@
 #include "GraphicsObject_Texture.h"
 
 #include "MathEngine.h"
-
 using namespace GD;
+
 
 float delta = 2.0f;
 float increment = 0.0125f;

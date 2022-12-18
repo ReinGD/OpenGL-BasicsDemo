@@ -1,6 +1,13 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #pragma once
 #ifndef FRAMEWORK_H
 #define FRAMEWORK_H
+
+#include <cassert>
 
 #include <stdlib.h>  
 #include <crtdbg.h>  
@@ -75,5 +82,7 @@ static struct _StaticMem
 	_StaticMem& operator = (const _StaticMem&) = delete;
 	_StaticMem& operator = (_StaticMem&&) = delete;
 } _StaticMemInst;
+
+
 
 #endif // !FRAMEWORK_H

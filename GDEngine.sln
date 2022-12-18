@@ -10,9 +10,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GDUtils", "Libraries\GDUtils\GDUtils.vcxproj", "{D8A28F6F-A740-427E-9E20-7AFB436D51F6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Libraries\Math\Math.vcxproj", "{ED602E5D-031C-4AF8-B6A6-4B34E0073B27}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D8A28F6F-A740-427E-9E20-7AFB436D51F6} = {D8A28F6F-A740-427E-9E20-7AFB436D51F6}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,3 +1,8 @@
+/*==============================
+ Made By ReinGD
+ 2022
+ All rights reserved
+==============================*/
 #pragma once
 #include <mutex>
 #ifndef GD_MEM_TRACKER_H
